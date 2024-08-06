@@ -1,0 +1,52 @@
+<div class="sidebar">
+    <div class="sidebar-logo">
+        <img src="https://via.placeholder.com/150x50?text=Logo" alt="Logo">
+    </div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a id="dashboard-link" class="nav-link" href="/admin"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="products-link" class="nav-link" href="/admin/products"><i class="fas fa-shopping-cart"></i> <span>Products</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="add-product-link" class="nav-link" href="/admin/add"><i class="fas fa-plus"></i> <span>Add Product</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="orders-link" class="nav-link" href="/admin/order"><i class="fas fa-clipboard-list"></i> <span>Orders</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="returns-link" class="nav-link" href="/admin/return"><i class="fas fa-undo"></i> <span>Returns</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="coupons-link" class="nav-link" href="/admin/coupon"><i class="fas fa-ticket-alt"></i> <span>Coupons</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="banners-link" class="nav-link" href="/admin/banners"><i class="fas fa-image"></i> <span>Banners</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="users-link" class="nav-link" href="/admin/users"><i class="fas fa-users"></i> <span>Users</span></a>
+        </li>
+        <li class="nav-item">
+            <a id="profile-link" class="nav-link" href="/admin/profile"><i class="fas fa-users"></i> <span>Admin</span></a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    // Function to set the active link based on the current URL
+    function setActiveLink() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Call the function to set the active link when the page loads
+    setActiveLink();
+</script>

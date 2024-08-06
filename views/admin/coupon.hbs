@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a35;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e2a35;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1000;
+            padding-top: 20px;
+        }
+        .sidebar-logo {
+            padding: 0 15px 20px;
+            border-bottom: 1px solid #3a4557;
+        }
+        .sidebar-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .nav-link {
+            color: #8391a2;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+            background-color: #1e2130;
+        }
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        .navbar {
+            background-color: #262b3c;
+            padding: 10px 20px;
+        }
+        .search-form {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        .search-form .form-control {
+            background-color: #1e2a35;
+            border: none;
+            color: #ffffff;
+            padding-left: 40px;
+        }
+        .search-form .form-control::placeholder {
+            color: #8391a2;
+        }
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8391a2;
+        }
+        .navbar-nav .nav-link {
+            padding: 0 10px;
+        }
+        .btn-primary {
+            background-color: #084421;
+            border-color: #4bffd8;
+        }
+        .btn-outline-secondary {
+            color: #8391a2;
+            border-color: #3a4557;
+        }
+        .table {
+            background-color: #262b3c;
+            color: #ffffff;
+        }
+        .table th {
+            background-color: #1e2130;
+            border-color: #3a4557 !important;
+        }
+        .table td {
+            border-color: #3a4557 !important;
+        }
+        .status-active {
+            color: #28c76f;
+        }
+        .status-blocked {
+            color: #ea5455;
+        }
+        .pagination .page-link {
+            background-color: #262b3c;
+            border-color: #3a4557;
+            color: #8391a2;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #624bff;
+            border-color: #624bff;
+            color: #ffffff;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            .main-content {
+                margin-left: 60px;
+            }
+            .sidebar .nav-link span {
+                display: none;
+            }
+            .sidebar-logo {
+                text-align: center;
+                padding: 10px 0;
+            }
+            .sidebar-logo img {
+                max-width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+      {{>adminSidebar}}
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+            <div class="container-fluid">
+                <form class="search-form position-relative">
+                    <i class="fas fa-search search-icon"></i>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-moon"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="https://via.placeholder.com/30" class="rounded-circle" alt="User"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <h1 class="mb-4">Coupon</h1>
+            <div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-primary">+ Add New Coupon </button>
+                <!-- <div>
+                    <button class="btn btn-outline-secondary">Import</button>
+                    <button class="btn btn-outline-secondary">Export</button>
+                </div> -->
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for customer, email, phone, status or something">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Status</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Active</a></li>
+                    <li><a class="dropdown-item" href="#">Blocked</a></li>
+                </ul>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Coupon ID</th>
+                            <th>Name</th>
+                            <th>Min Amount</th>
+                            <th>Max Amount</th>
+                            <th>Create Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody">
+                        <!-- Customer rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            <nav>
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const customers = [
+                { name: 'Harold Gonzalez', phone: '937-330-1634', email: 'harold1985@einrot.com', location: 'Florida, United States', createDate: '03/24/2023', status: 'Active' },
+                { name: 'Anthony Anderson', phone: '828-216-2190', email: 'anthony54@cuvox.de', location: 'California, United States', createDate: '04/09/2023', status: 'Blocked' },
+                { name: 'Gary Faulkner', phone: '215-302-3376', email: 'garyfaulkner45@zuvox.de', location: 'Willmering, Germany', createDate: '03/24/2023', status: 'Active' },
+                { name: 'Steve Nelson', phone: '937-330-1634', email: 'stevenelson@cuvox.de', location: 'Rotorua, New Zealand', createDate: '05/06/2023', status: 'Active' },
+                { name: 'Kimberly Sullivan', phone: '(02) 75 150 655', email: 'sprid1932@armyspy.com', location: 'Gundamulda, Australia', createDate: '06/19/2023', status: 'Active' },
+            ];
+
+            const tableBody = document.getElementById('customerTableBody');
+
+            customers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <img src="https://via.placeholder.com/30" class="rounded-circle me-2" alt="${customer.name}">
+                        ${customer.name}
+                    </td>
+                    <td>${customer.phone}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.location}</td>
+                    <td>${customer.createDate}</td>
+                    <td><span class="status-${customer.status.toLowerCase()}">${customer.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Edit</button>
+                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

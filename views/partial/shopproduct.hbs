@@ -1,0 +1,38 @@
+{{#each shops}}
+<div class="col-xl-4 col-lg-6 col-md-6">
+    
+                                        <div class="product-wrapper mb-50">
+                                            <div class="product-img mb-25">
+                                               <a href="/productinfo/{{this._id}}">
+                                        <img src="{{this.imageUrls.[0]}}" alt="">
+                                        <img class="secondary-img" src={{this.imageUrls.[2]}} alt="">
+                                                </a>
+                                                <div class="product-action text-center">
+                                                    <a href="#" title="Shoppingb Cart">
+                                                        <i class="flaticon-shopping-cart"></i>
+                                                    </a>
+                                                    <a href="#" title="Quick View">
+                                                        <i class="flaticon-eye"></i>
+                                                    </a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                                                        <i class="flaticon-compare"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="product-content pr-0">
+                                                <div class="pro-cat mb-10">
+                                                    <a href="shop.html">furniture</a>
+                                                </div>
+                                                <h4>
+                                                    <a href="/productdetail/{{this._id}}">{{this.name}}</a>
+                                                </h4>
+                                                <div class="product-meta">
+                                                    <div class="pro-price">
+                                                        <span>{{₹this.price}}</span>
+                                                        <span class="old-price">{{this.oldprice}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}

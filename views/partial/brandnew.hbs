@@ -1,0 +1,213 @@
+{{!-- <div class="product-wrapper mb-50">
+    <div class="product-img mb-25">
+        <a href="/product-details/{{this._id}}">
+            {{#if this.images.[0]}}
+                <img src="{{this.images.[0]}}" alt="{{this.title}}">
+            {{else}}
+                <img src="/path/to/placeholder-image.jpg" alt="No image available">
+            {{/if}}
+        </a>
+        <div class="product-action text-center">
+            <a href="#" title="{{this.title}}">
+                <i class="flaticon-shopping-cart"></i>
+            </a>
+            <a href="#" title="Quick View">
+                <i class="flaticon-eye"></i>
+            </a>
+            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                <i class="flaticon-compare"></i>
+            </a>
+        </div>
+        <div class="sale-tag">
+            {{#if this.isNew}}
+                <span class="new">new</span>
+            {{/if}}
+            {{#if this.onSale}}
+                <span class="sale">sale</span>
+            {{/if}}
+        </div>
+    </div>
+    <div class="product-content">
+        <div class="pro-cat mb-10">
+            <a href="/shop?category={{this.category}}">{{this.category}}</a>
+        </div>
+        <h4>
+            <a href="/product-details/{{this._id}}">{{this.title}}</a>
+        </h4>
+         <div class="product-meta">
+            <div class="pro-price">
+                {{#if this.salePrice}}
+                    <span>${{formatPrice this.salePrice}}</span>
+                    <span class="old-price">${{formatPrice this.regularPrice}}</span>
+                {{else}}
+                    <span>${{formatPrice this.regularPrice}}</span>
+                {{/if}}
+            </div>
+        </div> 
+        <div class="product-wishlist">
+            <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
+        </div>
+    </div>
+</div> --}}
+
+{{!-- <div class="products">
+    {{#each products}}
+    <div class="product">
+        <h2>{{this.name}}</h2>
+        <p>{{this.description}}</p>
+        <p>Brand: {{this.brand}}</p>
+        <p>Category: {{this.category}}</p>
+        <p>Price: ${{this.price}}</p>
+        <p>Sale Price: ${{this.salePrice}}</p>
+        <p>Stock: {{this.countInStock}}</p>
+        <div class="tags">
+            {{#each this.tags}}
+            <span class="tag">{{this}}</span>
+            {{/each}}
+        </div>
+        <div class="images">
+            {{!-- {{#each this.imageUrl}} --}}
+            {{!-- <p>image</p>
+            <img src="{{this.imageUrl}}" alt="{{this.name}}">
+            {{!-- {{/each}} --}}
+        {{!-- </div>
+    </div>
+    {{!-- {{/each}} --}}
+{{!-- </div> --}} --}} --}} --}}
+
+{{!-- <div class="pro-item">
+    <div class="product-wrapper mb-50">
+        <div class="product-img mb-25">
+            <a href="product-details.html">
+                <img src="{{imageUrl}}" alt="{{name}}">
+                <img class="secondary-img" src="{{secondaryImageUrl}}" alt="{{name}}">
+            </a>
+            <div class="product-action text-center">
+                <a href="#" title="Shopping Cart">
+                    <i class="flaticon-shopping-cart"></i>
+                </a>
+                <a href="#" title="Quick View">
+                    <i class="flaticon-eye"></i>
+                </a>
+                <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                    <i class="flaticon-compare"></i>
+                </a>
+            </div>
+            <div class="sale-tag">
+                {{#if isNew}}
+                <span class="new">new</span>
+                {{/if}}
+                {{#if isOnSale}}
+                <span class="sale">sale</span>
+                {{/if}}
+            </div>
+        </div>
+        <div class="product-content">
+            <div class="pro-cat mb-10">
+                {{#each categories}}
+                <a href="shop.html">{{this}}</a>{{#unless @last}}, {{/unless}}
+                {{/each}}
+            </div>
+            <h4>
+                <a href="product-details.html">{{name}}</a>
+            </h4>
+            <div class="product-meta">
+                <div class="pro-price">
+                    <span>${{price}} USD</span>
+                    {{#if oldPrice}}
+                    <span class="old-price">${{oldPrice}} USD</span>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="product-wishlist">
+                <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+{{!-- <section class="product-area box-90 pt-70 pb-40">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-5 col-lg-12">
+                <div class="area-title mb-50">
+                    <h2>Brand New Products</h2>
+                    <p>Browse the huge variety of our products</p>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-12">
+                <div class="product-tab mb-40">
+                    <ul class="nav product-nav  justify-content-xl-end" id="myTab1" role="tablist">
+                        {{!-- Add your tab items here --}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="product-tab-content">
+                    <div class="tab-content" id="myTabContent">
+                        {{!-- Add your tab content here --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> --}}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="product-tab-content">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="product-slider owl-carousel">
+                        {{#each firstPartProducts}}
+                        <div class="pro-item">
+                            <div class="product-wrapper mb-50">
+                                <div class="product-img mb-25">
+                                    <a href="/productinfo?q={{this._id}}">
+                                        <img src="{{this.imageUrls.[0]}}" alt="">
+                                        <img class="secondary-img" src={{this.imageUrls.[2]}} alt="">
+                                    </a>
+                                    <div class="product-action text-center">
+                                        <a href="#" title="Shopping Cart">
+                                            <i class="flaticon-shopping-cart"></i>
+                                        </a>
+                                        <a href="#" title="Quick View">
+                                            <i class="flaticon-eye"></i>
+                                        </a>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                                            <i class="flaticon-compare"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="pro-cat mb-10">
+                                        <a href="shop.html">{{this.category1}}</a>, <a href="shop.html">{{this.category2}}</a>
+                                    </div>
+                                    <h4>
+                                        <a href="/productdetail/{{this._id}}">{{this.name}}</a>
+                                    </h4>
+                                    <div class="product-meta">
+                                        <div class="pro-price">
+                                            <span>{{this.price}}</span>
+                                            <span class="old-price">{{this.oldprice}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-wishlist">
+                                        <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    
+                                        

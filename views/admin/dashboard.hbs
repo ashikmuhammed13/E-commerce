@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a35;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e2a35;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1000;
+            padding-top: 20px;
+        }
+        .sidebar-logo {
+            padding: 0 15px 20px;
+            border-bottom: 1px solid #3a4557;
+        }
+        .sidebar-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .nav-link {
+            color: #8391a2;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+            background-color: #1e2130;
+        }
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        .navbar {
+            background-color: #262b3c;
+            padding: 10px 20px;
+        }
+        .search-form {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        .search-form .form-control {
+            background-color: #1e2a35;
+            border: none;
+            color: #ffffff;
+            padding-left: 40px;
+        }
+        .search-form .form-control::placeholder {
+            color: #8391a2;
+        }
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8391a2;
+        }
+        .navbar-nav .nav-link {
+            padding: 0 10px;
+        }
+        .card {
+            background-color: #8a93b1;
+            border: none;
+            margin-bottom: 20px;
+        }
+        .text-success { color: #0bb783 !important; }
+        .text-danger { color: #f64e60 !important; }
+        .text-info { color: #8950fc !important; }
+        .btn-primary {
+            background-color: #624bff;
+            border-color: #624bff;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            .main-content {
+                margin-left: 60px;
+            }
+            .sidebar .nav-link span {
+                display: none;
+            }
+            .sidebar-logo {
+                text-align: center;
+                padding: 10px 0;
+            }
+            .sidebar-logo img {
+                max-width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    {{>adminSidebar}}
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+            <div class="container-fluid">
+                <form class="search-form position-relative">
+                    <i class="fas fa-search search-icon"></i>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-moon"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="https://via.placeholder.com/30" class="rounded-circle" alt="User"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Ecommerce</h1>
+                <button class="btn btn-primary">Add Product</button>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Orders</h5>
+                            <h2>5,312 <small class="text-danger">↓2.29%</small></h2>
+                            <a href="#" class="text-info">View Orders</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Revenue</h5>
+                            <h2>$8,312 <small class="text-success">↑2.29%</small></h2>
+                            <a href="#" class="text-info">View Earnings</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Customer</h5>
+                            <h2>$15,312 <small class="text-success">↑5.16%</small></h2>
+                            <a href="#" class="text-info">All Customer</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Balance</h5>
+                            <h2>$35.64k</h2>
+                            <a href="#" class="text-info">Withdraw Money</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Revenue</h5>
+                            <canvas id="revenueChart"></canvas>
+                            <div class="d-flex justify-content-between mt-3">
+                                <div>
+                                    <h6>Current Week</h6>
+                                    <h4>$235,965</h4>
+                                </div>
+                                <div>
+                                    <h6>Past Week</h6>
+                                    <h4>$198,214</h4>
+                                </div>
+                                <div>
+                                    <h6>Today's Earning</h6>
+                                    <h4>$2,562.30</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Sales</h5>
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Revenue by Location</h5>
+                            <div id="map" style="height: 300px;"></div>
+                            <ul class="list-unstyled mt-3">
+                                <li>United States: $22,120</li>
+                                <li>India: $12,756</li>
+                                <li>United Kingdom: $8,864</li>
+                                <li>Sweden: $6,124</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Best Selling Products</h5>
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Invoice</th>
+                                        <th>QTY</th>
+                                        <th>Price</th>
+                                        <th>Order Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><img src="https://via.placeholder.com/30" alt="Apple Watch"></td>
+                                        <td>Apple Watch</td>
+                                        <td>#21345</td>
+                                        <td>1</td>
+                                        <td>$968.09</td>
+                                        <td>27-08-2023</td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Current Week',
+                    data: [30, 40, 35, 50, 40, 80, 100],
+                    borderColor: 'rgba(99, 102, 241, 1)',
+                    tension: 0.4
+                }, {
+                    label: 'Past Week',
+                    data: [20, 30, 45, 30, 40, 50, 40],
+                    borderColor: 'rgba(11, 183, 131, 1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Sales Chart
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        new Chart(salesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Direct', 'Affiliate', 'Sponsored', 'E-mail'],
+                datasets: [{
+                    data: [35.7, 11.9, 22.2, 30.2],
+                    backgroundColor: [
+                        'rgba(99, 102, 241, 1)',
+                        'rgba(246, 78, 96, 1)',
+                        'rgba(137, 80, 252, 1)',
+                        'rgba(11, 183, 131, 1)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+{{>preload}}
+{{>header}}
+<main>
+    
+ <section class="slider-area pos-relative">
+    <div class="slider-active">
+        {{#each banners}}
+        <div class="single-slider slide-1-style slide-height d-flex align-items-center" style="background-image: url('/uploads/{{this.bgimage}}');">
+            <div class="shape-title bounce-animate">
+                <h2>{{this.bgtext}}</h2>
+            </div>
+            <div class="shape-icon bounce-animate">
+                <img src="img/slider/shape-icon.png" alt="">
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-7">
+                        <div class="slide-content">
+                            <span data-animation="fadeInRight" data-delay=".2s">{{this.collection}}</span>
+                            <h1 data-animation="fadeInUp" data-delay=".5s">{{this.maintext}}</h1>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="slide-shape1" data-animation="bounceInRight" data-delay=".9s">
+                            <img src="/uploads/{{this.leftimg}}" alt="">
+                        </div>
+                        <div class="slide-shape2" data-animation="bounceInRight" data-delay="1.2s">
+                            <img src="/uploads/{{this.rightimg}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+{{!-- <section class="slider-area pos-relative">
+    <div class="slider-active">
+        {{#each banners}}
+        <div class="single-slider slide-1-style slide-height d-flex align-items-center"
+            data-background="/uploads/{{this.bgimage}}">
+            <div class="shape-title bounce-animate">
+                <h2>{{this.bgtext}}</h2>
+            </div>
+            <div class="shape-icon bounce-animate">
+                <img src="img/slider/shape-icon.png" alt="">
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-7">
+                        <div class="slide-content">
+                            <span data-animation="fadeInRight" data-delay=".2s">{{this.collection}}</span>
+                            <h1 data-animation="fadeInUp" data-delay=".5s">{{this.maintext}}</h1>
+                        </div>
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="slide-shape1" data-animation="bounceInRight" data-delay=".9s">
+                            <img src="/uploads/{{this.leftimg}}" alt="">
+                        </div>
+                        <div class="slide-shape2" data-animation="bounceInRight" data-delay="1.2s">
+                            <img src="/uploads/{{this.rightimg}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section> --}}
+
+
+
+    <!-- slider-area end -->
+
+    <!-- banner area start -->
+    <section class="banner-area pt-30 pl-15 pr-15">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner mb-30">
+                        <a href="shop.html"><img src="img/banner/banner-1/banner1.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner mb-30">
+                        <a href="shop.html"><img src="img/banner/banner-1/banner2.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner mb-30">
+                        <a href="shop.html"><img src="img/banner/banner-1/banner3.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner area end -->
+    <!-- product-area start -->
+    <section class="product-area box-90 pt-70 pb-40">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-5 col-lg-12">
+                    <div class="area-title mb-50">
+                        <h2>Brand New Products</h2>
+                        <p>Browse the huge variety of our products</p>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-12">
+                    <div class="product-tab mb-40">
+                        <ul class="nav product-nav  justify-content-xl-end" id="myTab1" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">table lamp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false">furniture</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                    aria-controls="contact" aria-selected="false">chair</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab1" data-toggle="tab" href="#contact9" role="tab"
+                                    aria-controls="contact" aria-selected="false">Clock</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{>brandnew}}
+        </div>
+    </section>
+    <!-- product-area end -->
+    <!-- top-seller-area start -->
+    <section class="top-seller-area box-90">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-5 col-lg-8 col-md-7">
+                    <div class="area-title mb-50">
+                        <h2>Top Sellers</h2>
+                        <p>Browse the huge variety of our products</p>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-4 col-md-5">
+                    <div class="vue-btn text-left text-md-right mb-50">
+                        <a href="shop.html" class="btn theme-btn">Collection</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-5 col-lg-5">
+                    <div class="top-seller mb-50">
+                        <img src="img/banner/top-seller/banner1.jpg" alt="">
+                        <div class="seller-box text-center">
+                            <div class="top-seller-content text-left">
+                                <h2><a href="shop.html">Minimal Home Decor</a></h2>
+                                <div class="pro-price mb-25">
+                                    <span>$119.00 USD</span>
+                                    <span class="old-price">$230.00 USD</span>
+                                </div>
+                                <div class="top-seller-btn">
+                                    <a href="shop.html" class="btn theme-btn">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7">
+                    <div class="top-seller text-right mb-50">
+                        <img src="img/banner/top-seller/banner2.jpg" alt="">
+                        <div class="sellet-2-content">
+                            <h2><a href="shop.html">Xcross Comoer Furniture</a></h2>
+                            <div class="pro-price mb-25">
+                                <span>$119.00 USD</span>
+                                <span class="old-price">$230.00 USD</span>
+                            </div>
+                            <div class="top-seller-btn">
+                                <a href="shop.html" class="btn theme-btn-2 mr-20">view details</a>
+                                <a href="#" class="shop-btn"><i class="flaticon-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- top-seller-area end -->
+    <!-- product-area start -->
+    <section class="product-area box-90 pt-45 pb-40">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-5 col-lg-12">
+                    <div class="area-title mb-50">
+                        <h2>Best Sell Products</h2>
+                        <p>Browse the huge variety of our products</p>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-12">
+                    <div class="product-tab mb-40">
+                        <ul class="nav product-nav justify-content-xl-end" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab1" data-toggle="tab" href="#home1" role="tab"
+                                    aria-controls="home" aria-selected="true">table lamp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab1" data-toggle="tab" href="#profile1" role="tab"
+                                    aria-controls="profile" aria-selected="false">furniture</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab6" data-toggle="tab" href="#contact1" role="tab"
+                                    aria-controls="contact" aria-selected="false">chair</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#contact2" role="tab"
+                                    aria-controls="contact" aria-selected="false">Clock</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{>bestsell}}
+        </div>
+    </section>
+    <!-- product-area end -->
+    <!-- upcoming-product-area start -->
+    <section class="upcoming-product-area pos-relative box-90 pt-120 pb-120" data-background="img/bg/bg.jpg">
+        <div class="upc-shape d-none d-xl-block">
+            <div class="bakix-marker map-c1">
+                <div class="bakix-map-icon">
+                    <i class="flaticon-add"></i>
+                </div>
+                <div class="bakix-map-address">
+                    <p>Lodge Flush Mount</p>
+                </div>
+            </div>
+            <div class="bakix-marker map-c2">
+                <div class="bakix-map-icon">
+                    <i class="flaticon-add"></i>
+                </div>
+                <div class="bakix-map-address">
+                    <p>Lodge Flush Mount</p>
+                </div>
+            </div>
+            <div class="bakix-marker map-c3">
+                <div class="bakix-map-address">
+                    <p>Lodge Flush Mount</p>
+                </div>
+                <div class="bakix-map-icon">
+                    <i class="flaticon-add"></i>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-6 offset-xl-6">
+                    <div class="upcoming-product">
+                        <div class="upc-price">$500.00</div>
+                        <h1><a href="/productinfo">Lodge Flush Mount</a></h1>
+                        <ul class="upc-pro-info fix">
+                            <li class="d-flex">
+                                <i class="flaticon-layers"></i>
+                                <div class="upc-info">
+                                    <h4>Origin From</h4>
+                                    <span>Sweden</span>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <i class="flaticon-layers"></i>
+                                <div class="upc-info">
+                                    <h4>Material</h4>
+                                    <span>Aluminum</span>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <i class="flaticon-layers"></i>
+                                <div class="upc-info">
+                                    <h4>Designer</h4>
+                                    <span>SayyamCode</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla.</p>
+                        <div class="upc-btn">
+                            <a class="btn theme-btn" href="shop.html" data-animation="fadeInLeft" data-delay=".7s">shop
+                                now</a>
+                            <a class="btn white-btn" href="shop.html" data-animation="fadeInRight"
+                                data-delay=".9s">Details</a>
+                        </div>
+                        <div class="event-timer">
+                            <div class="mt-40" data-countdown="2019/04/01"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- upcoming-product-area end -->
+</main>
+{{>footer}}
+{{>search}}

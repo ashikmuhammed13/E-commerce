@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a35;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e2a35;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1000;
+            padding-top: 20px;
+        }
+        .sidebar-logo {
+            padding: 0 15px 20px;
+            border-bottom: 1px solid #3a4557;
+        }
+        .sidebar-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .nav-link {
+            color: #8391a2;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+            background-color: #1e2130;
+        }
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        .navbar {
+            background-color: #262b3c;
+            padding: 10px 20px;
+        }
+        .search-form {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        .search-form .form-control {
+            background-color: #1e2a35;
+            border: none;
+            color: #ffffff;
+            padding-left: 40px;
+        }
+        .search-form .form-control::placeholder {
+            color: #8391a2;
+        }
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8391a2;
+        }
+        .navbar-nav .nav-link {
+            padding: 0 10px;
+        }
+        .table-responsive {
+            background-color: #262b3c;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        table {
+            margin-bottom: 0;
+        }
+        th {
+            background-color: #1e2130;
+            border-color: #3a4557 !important;
+        }
+        td {
+            border-color: #3a4557 !important;
+        }
+        .status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        .status-active {
+            background-color: #28c76f33;
+            color: #28c76f;
+        }
+        .status-inactive {
+            background-color: #ea545533;
+            color: #ea5455;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            .main-content {
+                margin-left: 60px;
+            }
+            .sidebar .nav-link span {
+                display: none;
+            }
+            .sidebar-logo {
+                text-align: center;
+                padding: 10px 0;
+            }
+            .sidebar-logo img {
+                max-width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {{>adminSidebar}}
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+            <div class="container-fluid">
+                <form class="search-form position-relative">
+                    <i class="fas fa-search search-icon"></i>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-moon"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="https://via.placeholder.com/30" class="rounded-circle" alt="User"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">ACCOUNT</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">SECURITY</button>
+                        </li>
+                        
+                    </ul>
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="mb-3">
+                                <img src="https://via.placeholder.com/100" alt="Profile" class="rounded-circle" style="width: 100px; height: 100px;">
+                                <button class="btn btn-primary ms-3">UPLOAD NEW PHOTO</button>
+                                <button class="btn btn-outline-danger ms-2">RESET</button>
+                                <small class="d-block mt-2">Allowed PNG or JPEG. Max size of 800K.</small>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" value="johnDoe">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" value="John Doe">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" value="johnDoe@example.com">
+                                </div>
+                                <!-- <div class="col-md-6 mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <input type="text" class="form-control" id="role" value="Admin" readonly>
+                                </div> -->
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status">
+                                        <option>Active</option>
+                                        <option>Inactive</option>
+                                    </select>
+                                </div> -->
+                                <!-- <div class="col-md-6 mb-3">
+                                    <label for="company" class="form-label">Company</label>
+                                    <input type="text" class="form-control" id="company" value="ABC Pvt. Ltd.">
+                                </div> -->
+                            </div>
+                            <!-- <div class="alert alert-warning" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill"></i> Your email is not confirmed. Please check your inbox.
+                                <a href="#" class="alert-link">Resend Confirmation</a>
+                            </div> -->
+    
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
+                            <button type="reset" class="btn btn-outline-secondary ms-2">RESET</button>
+                        </div>
+                        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword">
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirmPassword">
+                            
+                        </div>
+                        <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                            <!-- Add content for INFO tab -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
