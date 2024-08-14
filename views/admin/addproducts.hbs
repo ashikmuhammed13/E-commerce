@@ -144,10 +144,10 @@
                         <label for="productDescription" class="form-label">Product Description</label>
                         <textarea class="form-control" id="productDescription" name="description" rows="5"></textarea>
                     </div>
-       <div class="mb-3">
-        <label for="productImages" class="form-label">Product Images</label>
-        <input type="file" class="form-control" id="productImages" name="imageUrls" multiple>
-    </div>
+                    <div class="mb-3">
+                        <label for="productImages" class="form-label">Product Images</label>
+                        <input type="file" class="form-control" id="productImages" name="imageUrls" multiple>
+                    </div>
                     <div class="mb-3">
                         <label for="productGallery" class="form-label">Product Gallery</label>
                         <div class="border p-5 text-center">
@@ -160,17 +160,21 @@
                         <input type="checkbox" class="form-check-input" id="inStock" name="inStock">
                         <label class="form-check-label" for="inStock">In Stock</label>
                     </div>
-                     <div class="mb-3">
-        <label for="count" class="form-label">Quantity</label>
-        <input type="number" class="form-control" id="count" name="countInStock" placeholder="Enter Quantity">
-    </div>
                     <div class="mb-3">
-                        <label for="Brand" class="form-label">Brand</label>
-                        <select class="form-select" id="brand" name="brand">
+                        <label for="count" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="count" name="countInStock" placeholder="Enter Quantity">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#addBrandModal">
+                            Add New Brand
+                        </button>
+                        <label for="brand" class="form-label">Brand</label>
+                        <select class="form-select" id="brand" name="brandName">
                             <option selected>Select Brand</option>
-                            <option value="Brand 1">Louis Vitton</option>
-                            <option value="Brand 2">gucchi</option>
-                            <option value="Brand 3">armani</option>
+                            <option value="Louis Vitton">Louis Vitton</option>
+                            <option value="Gucci">Gucci</option>
+                            <option value="Armani">Armani</option>
+                            <option value="Coach">Coach</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -196,10 +200,32 @@
                     </div>
                 </div>
             </div>
-             <button type="submit" class="btn btn-primary">Add Product</button>
+            <button type="submit" class="btn btn-primary">Add Product</button>
         </div>
     </div>
 </form>
+
+<!-- Add Brand Modal -->
+<div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBrandModalLabel">Add New Brand</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addBrandForm">
+                    <div class="mb-3">
+                        <label for="newBrandName" class="form-label">Brand Name</label>
+                        <input type="text" class="form-control" id="newBrandName" name="brand" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Brand</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -209,6 +235,30 @@
                 navLinks.forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
             });
+        });
+
+        // Add Brand Form Submission
+        const addBrandForm = document.getElementById('addBrandForm');
+        const brandSelect = document.getElementById('brand');
+
+        addBrandForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newBrandName = document.getElementById('newBrandName').value;
+            
+            // Here you would typically send an AJAX request to your server to add the new brand
+            // For this example, we'll just add it to the select element
+            const newOption = new Option(newBrandName, newBrandName);
+            brandSelect.add(newOption);
+            
+            // Select the new brand
+            brandSelect.value = newBrandName;
+            
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addBrandModal'));
+            modal.hide();
+            
+            // Clear the form
+            addBrandForm.reset();
         });
     });
 </script>

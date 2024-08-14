@@ -1,29 +1,44 @@
 const { Banner, MidBanner, BotBanner, SaleBanner } = require('../models/banner');
 
-const Product = require('../models/productSchema');
+const {Product,Brand} = require('../models/productSchema');
 const { User, DeletedUser } = require('../models/userschema');
+
+const loginGet = (req, res) => {
+    res.render('admin/adminLogin');
+  };
+  
+  const loginPost = (req, res) => {
+    const { username, password } = req.body;
+  
+    // Hardcoded credentials
+    const adminUsername = 'ashique@admin';
+    const adminPassword = '906652336';
+  
+    if (username === adminUsername && password === adminPassword) {
+      // Store admin status in session
+      req.session.isAdmin = true;
+      res.redirect('/admin/admin');
+    } else {
+      res.render('admin/adminLogin', { error: 'Invalid username or password' });
+    }
+  };
 const addProductPage = (req, res) => {
     res.render('admin/addproducts');  // Ensure 'admin/addproducts' matches the path in the views folder
 };
 
 const addProduct = async (req, res) => {
     try {
-        console.log(req.files, 'req.files', req.body, 'req.body');
-        const { name, description, oldprice, category, price, countInStock } = req.body;
+        const { name, description, oldprice, category, price, countInStock, brandName } = req.body;
         let imageUrls = [];
 
         if (req.files && req.files.length > 0) {
             imageUrls = req.files.map(file => `/uploads/${file.filename}`);
         }
 
-        console.log('image urls', imageUrls);
-
-        if (!name || !description || !oldprice || !price || imageUrls.length === 0 || !category || countInStock === undefined) {
-            throw new Error("Missing required fields");
-        }
-
-        if (parseInt(countInStock) < 0) {
-            throw new Error("Quantity must be 0 or above");
+        let brand = await Brand.findOne({ name: brandName });
+        if (!brand) {
+            brand = new Brand({ name: brandName });
+            await brand.save();
         }
 
         const newProduct = new Product({
@@ -33,7 +48,8 @@ const addProduct = async (req, res) => {
             oldprice: parseFloat(oldprice),
             imageUrls,
             category,
-            countInStock: parseInt(countInStock)
+            countInStock: parseInt(countInStock),
+            brand: brand._id
         });
 
         await newProduct.save();
@@ -309,9 +325,6 @@ const productEdit = async (req, res) => {
     }
 };
 
-
-  
-
   const searching = async (req, res) => {
     try {
         const word = req.query.word;
@@ -324,14 +337,9 @@ const productEdit = async (req, res) => {
     }
 };
 
-
-
-
-
-
-
-
 module.exports = {
+    loginGet,
+    loginPost,
     userEdit,
     blockUser,
     addProductPage,
