@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const cartSchema = new mongoose.Schema({
     userId: {
@@ -22,12 +22,12 @@ const cartSchema = new mongoose.Schema({
             type: Number,
             required: true
         },
-        countinstock: {
+        quantity: {
             type: Number,
             min: [1, 'Quantity must be above 0'],
             required: true
         }
     }],
-}, { timestamps: true });
+}, { timestamps: true }); 
 
 module.exports = mongoose.model("Cart", cartSchema);

@@ -6,8 +6,9 @@ const flash = require('connect-flash');
 const session = require('express-session');
 require('dotenv').config();
 const methodOverride = require('method-override');
-
-const mongoose = require('./config/dbConfig');
+const MongoDbStore = require('connect-mongodb-session')(session);
+const db = require('./config/dbConfig'); // Import the mongoose connection
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const PORT = process.env.PORT || 3001;
 
@@ -18,11 +19,18 @@ const app = express();
 
 app.use(methodOverride('_method'));
 
+// Initialize MongoDbStore with existing mongoose connection
+const store = new MongoDbStore({
+  collection: 'sessions',
+  connection: db // Use the mongoose connection
+});
+
 app.use(session({
   secret: 'ash',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 600000 * 24 }
+  cookie: { maxAge: 600000 * 24 },
+  store: store // Use the initialized store
 }));
 
 app.use(flash());
@@ -54,9 +62,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
+app.post('/checkout', (req, res) => {
+  console.log("bbhjbhjbjhbhjb",req.body);  // This should log all form data if working correctly
+  res.send('Form submitted');
+});
 
+ 
 app.listen(PORT, () => {
   console.log('Server is running on port:', PORT);
 });
 
-module.exports = app;
+
+module.exports = {app};

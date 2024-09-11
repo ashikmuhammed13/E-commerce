@@ -1,7 +1,6 @@
-{{>preload}}
+{{!-- {{>preload}}
 {{>header}}
 <main>
-    
  <section class="slider-area pos-relative">
     <div class="slider-active">
         {{#each banners}}
@@ -35,46 +34,6 @@
         {{/each}}
     </div>
 </section>
-
-{{!-- <section class="slider-area pos-relative">
-    <div class="slider-active">
-        {{#each banners}}
-        <div class="single-slider slide-1-style slide-height d-flex align-items-center"
-            data-background="/uploads/{{this.bgimage}}">
-            <div class="shape-title bounce-animate">
-                <h2>{{this.bgtext}}</h2>
-            </div>
-            <div class="shape-icon bounce-animate">
-                <img src="img/slider/shape-icon.png" alt="">
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-7">
-                        <div class="slide-content">
-                            <span data-animation="fadeInRight" data-delay=".2s">{{this.collection}}</span>
-                            <h1 data-animation="fadeInUp" data-delay=".5s">{{this.maintext}}</h1>
-                        </div>
-                    </div>
-                    <div class="col-xl-5">
-                        <div class="slide-shape1" data-animation="bounceInRight" data-delay=".9s">
-                            <img src="/uploads/{{this.leftimg}}" alt="">
-                        </div>
-                        <div class="slide-shape2" data-animation="bounceInRight" data-delay="1.2s">
-                            <img src="/uploads/{{this.rightimg}}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-</section> --}}
-
-
-
-    <!-- slider-area end -->
-
-    <!-- banner area start -->
     <section class="banner-area pt-30 pl-15 pr-15">
         <div class="container-fluid">
             <div class="row">
@@ -96,8 +55,6 @@
             </div>
         </div>
     </section>
-    <!-- banner area end -->
-    <!-- product-area start -->
     <section class="product-area box-90 pt-70 pb-40">
         <div class="container-fluid">
             <div class="row">
@@ -133,8 +90,6 @@
             {{>brandnew}}
         </div>
     </section>
-    <!-- product-area end -->
-    <!-- top-seller-area start -->
     <section class="top-seller-area box-90">
         <div class="container-fluid">
             <div class="row">
@@ -187,8 +142,6 @@
             </div>
         </div>
     </section>
-    <!-- top-seller-area end -->
-    <!-- product-area start -->
     <section class="product-area box-90 pt-45 pb-40">
         <div class="container-fluid">
             <div class="row">
@@ -224,8 +177,6 @@
             {{>bestsell}}
         </div>
     </section>
-    <!-- product-area end -->
-    <!-- upcoming-product-area start -->
     <section class="upcoming-product-area pos-relative box-90 pt-120 pb-120" data-background="img/bg/bg.jpg">
         <div class="upc-shape d-none d-xl-block">
             <div class="bakix-marker map-c1">
@@ -302,7 +253,332 @@
             </div>
         </div>
     </section>
-    <!-- upcoming-product-area end -->
 </main>
 {{>footer}}
-{{>search}}
+{{>search}} --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE - Elegant Living, Redefined</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f5f2;
+            color: #333;
+        }
+        .navbar {
+            background-color: #1c1c1c;
+            padding: 15px 0;
+            position: relative;
+        }
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #c0a080, transparent);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo a {
+            font-family: 'Playfair Display', serif;
+            color: #c0a080;
+            font-size: 32px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin: 0 20px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #c0a080;
+        }
+        .nav-icons a {
+            color: #c0a080;
+            font-size: 18px;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+        }
+        .nav-icons a:hover {
+            color: #fff;
+        }
+        .cart-icon {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #c0a080;
+            color: #1c1c1c;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .product-slider .pro-item {
+            margin: 0 15px;
+        }
+        .product-wrapper {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .product-wrapper:hover {
+            transform: translateY(-5px);
+        }
+        .product-img {
+            position: relative;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-img:hover img {
+            transform: scale(1.05);
+        }
+        .product-action {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            background-color: rgba(192, 160, 128, 0.9);
+            padding: 10px 0;
+            transition: bottom 0.3s ease;
+        }
+        .product-img:hover .product-action {
+            bottom: 0;
+        }
+        .product-action a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .product-content {
+            padding: 20px;
+        }
+        .pro-cat {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .product-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .product-content h4 a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .product-content h4 a:hover {
+            color: #c0a080;
+        }
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pro-price {
+            font-weight: 600;
+            color: #c0a080;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-left: 10px;
+        }
+        .product-wishlist a {
+            color: #c0a080;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <a href="/">LUXE</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/sale">Sale</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/wishlist">Wishlist</a></li>
+                <li><a href="/showCart">Cart</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+                <a href="/profile" class="user-icon"><i class="far fa-user"></i></a>
+                <a href="/showCart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" style="background-image: url('path-to-your-hero-image.jpg'); background-size: cover; background-position: center; height: 80vh; display: flex; align-items: center; position: relative;">
+            <div class="container">
+                <div style="max-width: 600px; position: relative; z-index: 2;">
+                    <h1 style="font-family: 'Playfair Display', serif; font-size: 48px; color: #fff; margin-bottom: 20px;">Elegant Living, Redefined</h1>
+                    <p style="font-size: 18px; color: #fff; margin-bottom: 30px;">Discover our curated collection of luxury home decor and furniture.</p>
+                    <a href="/shop" style="display: inline-block; background-color: #c0a080; color: #fff; padding: 12px 30px; text-decoration: none; font-weight: 600; transition: background-color 0.3s ease;">Shop Now</a>
+                </div>
+            </div>
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.4);"></div>
+        </section>
+
+        <section class="product-area" style="padding: 80px 0; background-color: #fff;">
+            <div class="container">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 50px;">Our Products</h2>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="product-tab-content">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="product-slider owl-carousel">
+                                        {{#each firstPartProducts}}
+                                        <div class="pro-item">
+                                            <div class="product-wrapper mb-50">
+                                                <div class="product-img mb-25">
+                                                    <a href="/productinfo?q={{this._id}}">
+                                                        <img src="{{this.imageUrls.[0]}}" alt="">
+                                                        <img class="secondary-img" src="{{this.imageUrls.[2]}}" alt="">
+                                                    </a>
+                                                    <div class="product-action text-center">
+                                                        <a href="#" title="Shopping Cart">
+                                                            <i class="flaticon-shopping-cart"></i>
+                                                        </a>
+                                                        <a href="#" title="Quick View">
+                                                            <i class="flaticon-eye"></i>
+                                                        </a>
+                                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                                                            <i class="flaticon-compare"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content">
+                                                    <div class="pro-cat mb-10">
+                                                        <a href="shop.html">{{this.brand.name}}</a>
+                                                    </div>
+                                                    <h4>
+                                                        <a href="/productdetail/{{this._id}}">{{this.name}}</a>
+                                                    </h4>
+                                                    <div class="product-meta">
+                                                        <div class="pro-price">
+                                                            <span>₹{{this.price}}</span>
+                                                            <span class="old-price">₹{{this.oldprice}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-wishlist">
+                                                        <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter" style="background-color: #1c1c1c; color: #fff; padding: 60px 0;">
+            <div class="container" style="text-align: center;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px;">Join Our Newsletter</h2>
+                <p style="font-size: 18px; margin-bottom: 30px;">Stay updated with our latest collections and exclusive offers.</p>
+                <form style="max-width: 500px; margin: 0 auto; display: flex;">
+                    <input type="email" placeholder="Enter your email" style="flex-grow: 1; padding: 12px; border: none; font-size: 16px;">
+                    <button type="submit" style="background-color: #c0a080; color: #fff; border: none; padding: 12px 30px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: #1c1c1c; color: #fff; padding: 60px 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div style="width: 25%; margin-bottom: 30px;">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">LUXE</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">Elevating your living spaces with timeless elegance and unparalleled quality.</p>
+                </div>
+                <div style="width: 20%; margin-bottom: 30px;">
+                    <h4 style="font-size: 18px; margin-bottom: 20px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #fff; text-decoration: none; font-size: 14px;">About Us</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #fff; text-decoration: none; font-size: 14px;">Contact</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #fff; text-decoration: none; font-size: 14px;">FAQs</a></li>
+                    </ul>
+                </div>
+                <!-- Add more footer columns as needed -->
+            </div>
+            <div style="border-top: 1px solid #333; padding-top: 30px; margin-top: 30px; text-align: center; font-size: 14px;">
+                &copy; 2024 LUXE. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".product-slider").owlCarousel({
+                loop: true,
+                margin: 30,
+                nav: true,
+                dots: false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

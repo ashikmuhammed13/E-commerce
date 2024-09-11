@@ -1,66 +1,168 @@
-<!-- preloader -->
-{{>preload}}
-<!-- preloader end -->
-
-<!-- header start -->
-{{>header}}
-<!-- header end -->
-
-<main>
-    <!-- breadcrumb-area-start -->
-    <section class="breadcrumb-area" data-background="img/bg/page-title.png">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="breadcrumb-text text-center">
-                        <h1>Register</h1>
-                        <ul class="breadcrumb-menu">
-                            <li><a href="/">home</a></li>
-                            <li><span>Register</span></li>
-                        </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - LUXE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f5f2;
+            color: #333;
+        }
+        .breadcrumb-area {
+            background-color: #1c1c1c;
+            padding: 60px 0;
+            position: relative;
+        }
+        .breadcrumb-text h1 {
+            color: #c0a080;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .breadcrumb-menu {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .breadcrumb-menu li {
+            display: inline-block;
+            color: #fff;
+            font-size: 14px;
+        }
+        .breadcrumb-menu li:not(:last-child)::after {
+            content: '/';
+            margin: 0 5px;
+            color: #c0a080;
+        }
+        .breadcrumb-menu li a {
+            color: #c0a080;
+            text-decoration: none;
+        }
+        .register-area {
+            padding: 80px 0;
+        }
+        .register-form {
+            background-color: #fff;
+            padding: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .register-form h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1c1c1c;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-control {
+            border: 1px solid #c0a080;
+            padding: 15px;
+            font-size: 14px;
+        }
+        .form-control:focus {
+            border-color: #1c1c1c;
+            box-shadow: none;
+        }
+        .btn-register {
+            background-color: #c0a080;
+            border: none;
+            color: #1c1c1c;
+            padding: 15px 30px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-register:hover {
+            background-color: #1c1c1c;
+            color: #c0a080;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #c0a080;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .login-link a:hover {
+            color: #1c1c1c;
+        }
+        #errorMessage {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+   
+    <main>
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb-text text-center">
+                            <h1>Register</h1>
+                            <ul class="breadcrumb-menu">
+                                <li><a href="/">Home</a></li>
+                                <li><span>Register</span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- breadcrumb-area-end -->
-
-    <!-- login Area Strat-->
-    <section class="login-area pt-100 pb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="basic-login">
-                        <h3 class="text-center mb-60">Signup From Here</h3>
-                        <h6 style="color: red;" id="errorMessage">{{errorMessage}}</h6> 
-                        <form method="post" action="/register">
-                            <label for="name">Username <span>**</span></label>
-                            <input id="name" name="username" type="text" placeholder="Enter Username" required/>
-                            <label for="number">Phone <span>**</span></label>
-                            <input id="Number" name="phone" type="number" placeholder="Enter Your Phone Number" required/>
-                            <label for="email-id">Email Address <span>**</span></label>
-                            <input id="email-id" name="email" type="email" placeholder="Enter Email address..." required/>
-                            <label for="pass">Password <span>**</span></label>
-                            <input id="pass" name="password" type="password" placeholder="Enter password..." required/>
-                            <label for="cpass">Confirm Password <span>**</span></label>
-                            <input id="cpass" name="cpassword" type="password" placeholder="Re-enter password..." required/>
-                            <div class="mt-10"></div>
-                            <button class="btn theme-btn-2 w-100">Register Now</button>
-                            <div class="or-divide"><span>or</span></div>
-                            <a href="/login" class="btn theme-btn w-100">Login Now</a>
-                        </form>
+        <section class="register-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="register-form">
+                            <h2>Create Your Account</h2>
+                            {{#if errorMessage}}
+                            <div id="errorMessage">{{errorMessage}}</div>
+                            {{/if}}
+                            <form method="post" action="/register">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="username" placeholder="Username" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" id="number" name="phone" placeholder="Phone Number" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email-id" name="email" placeholder="Email Address" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="cpass" name="cpassword" placeholder="Confirm Password" required>
+                                </div>
+                                <button type="submit" class="btn btn-register">Register Now</button>
+                            </form>
+                            <div class="login-link">
+                                Already have an account? <a href="/login">Login here</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- login Area End-->
-</main>
-
-<!-- footer start -->
-{{>footer}}
-<!-- footer end -->
-
-<!-- Fullscreen search -->
-{{>search}}
-<!-- end fullscreen search -->
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

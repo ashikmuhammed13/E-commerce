@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Notch Luxe Bags</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- jsPDF Library -->
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+    <div id="invoice" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; max-width: 500px; width: 100%;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #4a4a4a; margin: 0;">Notch Luxe Bags</h1>
+            <p style="color: #8a8a8a; font-style: italic;">Luxury at your fingertips</p>
+        </div>
+        <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Order Confirmation</h2>
+        <p style="color: #27ae60; font-weight: bold;">{{message}}</p>
+        <h3 style="color: #2c3e50;">Order Details:</h3>
+        <ul style="list-style-type: none; padding: 0;">
+            {{#each order.items}}
+                <li style="background-color: #ecf0f1; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
+                    <span style="color: #2980b9; font-weight: bold;">Product:</span> {{this.productId}} | 
+                    <span style="color: #2980b9; font-weight: bold;">Quantity:</span> {{this.quantity}} | 
+                    <span style="color: #2980b9; font-weight: bold;">Total Price:</span> ${{this.totalPrice}}
+                </li>
+            {{/each}}
+        </ul>
+        <p style="font-size: 1.2em; font-weight: bold; text-align: right; color: #e74c3c;">Total Amount: ${{order.totalAmount}}</p>
+        <div style="text-align: center; margin-top: 20px;">
+            <p style="color: #7f8c8d;">Thank you for choosing Notch Luxe Bags!</p>
+            <p style="color: #7f8c8d;">For any queries, please contact our customer support.</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Get the HTML content of the invoice
+            const invoiceElement = document.getElementById('invoice');
+            
+            // Add HTML content to jsPDF
+            doc.html(invoiceElement, {
+                callback: function (doc) {
+                    // Save the PDF
+                    doc.save('invoice.pdf');
+                },
+                x: 10,
+                y: 10,
+                width: 180, // Adjust width to fit content
+                windowWidth: 650 // Adjust window width to prevent cut-off
+            });
+        }
+    </script>
+</body>
+</html>

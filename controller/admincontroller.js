@@ -2,6 +2,7 @@ const { Banner, MidBanner, BotBanner, SaleBanner } = require('../models/banner')
 
 const {Product,Brand} = require('../models/productSchema');
 const { User, DeletedUser } = require('../models/userschema');
+const Coupon=require("../models/coupon")
 
 const loginGet = (req, res) => {
     res.render('admin/adminLogin');
@@ -185,7 +186,7 @@ const addSaleBanner = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
-    const { userId } = req.params;
+    const { userId } = req.query;
     console.log('Deleting user with ID:', userId); // Debugging log
 
     try {
@@ -337,6 +338,42 @@ const productEdit = async (req, res) => {
     }
 };
 
+const addCoupon = async (req, res) => {
+    try {
+        console.log("body:",req.body)
+        const { code, discount, condition, minPriceRange, maxPriceRange, usageCount, expireDate } = req.body;
+
+        // Assuming you have a Mongoose model named Coupon
+        const newCoupon = new Coupon({
+            code, // Use lowercase 'coupon' to avoid naming conflict
+            discount,
+            condition,
+            minPriceRange,
+            maxPriceRange,
+            usageCount,
+            expireDate
+        });
+
+        await newCoupon.save();
+        res.render("admin/coupon", { message: "Coupon saved successfully." });
+    } catch (error) {
+        console.error(error);
+        res.render("admin/coupon", { errorMessage: "Server error" }); // Adjusted error page rendering path
+    }
+};  
+
+const showCoupon=async(req,res)=>{
+    try{
+        const coupons=await Coupon.find().lean()
+
+        res.render("admin/coupon",{coupons})}
+        catch (error) {
+            console.error(error);
+            res.render("admin/coupon", { errorMessage: "Server error" }); // Adjusted error page rendering path
+        
+    };  
+}
+
 module.exports = {
     loginGet,
     loginPost,
@@ -359,5 +396,7 @@ module.exports = {
     deleteProduct,
     productEdit,
     searching,
+    addCoupon,
+    showCoupon,
 
 };

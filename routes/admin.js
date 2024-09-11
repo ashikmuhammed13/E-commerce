@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../helper/multer');
-const {loginGet,loginPost,addProductPage, addProduct, user, products, banner, addBanner, addMidBanner, addBotBanner, addSaleBanner, bannershow, blockUser, unblockUser, blockProduct, unblockProduct, deleteProduct, userEdit,productEdit,searching } = require('../controller/admincontroller');
+const {loginGet,loginPost,addProductPage, addProduct,deleteUser, user, products, banner, addBanner, addMidBanner, addBotBanner, addSaleBanner, bannershow, blockUser, unblockUser, blockProduct, unblockProduct, deleteProduct, userEdit,productEdit,searching,addCoupon,showCoupon } = require('../controller/admincontroller');
 const {adminAuth}=require("../middleware/userAuth")
 // Render admin pages
 router.get('/login',loginGet);
@@ -10,13 +10,15 @@ router.get("/admin", (req, res) => res.render('admin/dashboard'))
 router.get('/add',adminAuth, addProductPage);
 router.post('/addproducts', upload.array('imageUrls', 10), addProduct);
 router.get('/profile', (req, res) => res.render('admin/admin'));
-router.get('/coupon', (req, res) => res.render('admin/coupon'));
+router.post("/addcoupon",addCoupon)
+router.get("/coupon",showCoupon)
 router.get('/bannerss', (req, res) => res.render('admin/bannershow'));
 router.get('/order', (req, res) => res.render('admin/order'));
 router.get('/products',adminAuth, products); // This should match your product listing route
 router.get('/return', (req, res) => res.render('admin/return'));
 router.get('/users', user);
-router.get('/banners', banner);
+router.get('/banners', banner); 
+router.post("/deleteUser",deleteUser) 
 
 // Add Banner
 router.post('/banners', upload.fields([

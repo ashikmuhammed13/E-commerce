@@ -1,432 +1,300 @@
-{{>preload}}
-<!-- preloader -->
-
-<!-- preloader end  -->
-
-
-
-<!-- header start -->
-{{>header}}
-<!-- header end -->
-
-
-<main>
-    <!-- shop-area start -->
-
-    <section class="shop-details-area pt-100 pb-100">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Product View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f5f2;
+            color: #1c1c1c;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .product-area {
+            padding: 80px 0;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .product-image-area, .product-info-area {
+            flex: 1;
+            padding: 15px;
+            min-width: 300px;
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border: 1px solid #e0e0e0;
+        }
+        .product-thumbnails {
+            display: flex;
+            margin-top: 20px;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        .thumbnail:hover {
+            border-color: #c0a080;
+        }
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #1c1c1c;
+        }
+        .product-price {
+            font-size: 24px;
+            color: #c0a080;
+            margin-bottom: 20px;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-left: 10px;
+        }
+        .product-description {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .product-meta {
+            margin-bottom: 30px;
+        }
+        .product-meta-item {
+            margin-bottom: 10px;
+        }
+        .product-meta-label {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .add-to-cart-btn {
+            background-color: #c0a080;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .add-to-cart-btn:hover {
+            background-color: #a88b6a;
+        }
+        .quantity-input {
+            width: 60px;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #e0e0e0;
+        }
+        .product-actions {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            color: #c0a080;
+            font-size: 18px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .tabs {
+            margin-top: 50px;
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .tab-button.active {
+            color: #c0a080;
+            border-bottom: 2px solid #c0a080;
+        }
+        .tab-content {
+            padding: 30px 0;
+        }
+        .review {
+            margin-bottom: 30px;
+        }
+        .review-author {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .review-date {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .related-products {
+            margin-top: 80px;
+        }
+        .related-products-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .related-products-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .related-product-item {
+            flex: 0 0 calc(25% - 30px);
+            margin: 15px;
+            text-align: center;
+        }
+        .related-product-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .related-product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .related-product-price {
+            color: #c0a080;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body> 
+    {{>header}}
+    <main class="product-area">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-4">
-                    <div class="product-details-img mb-10">
-                        <div class="tab-content" id="myTabContentpro">
-                            {{#each product.imageUrls}}
-                            <div class="tab-pane fade show active" id="image-{{@index}}"
-                                role="tabpanel">
-                                <div class="product-large-img">
-                                    <img src="{{this}}" alt="">
-                                </div>
-                            </div>
-                            {{/each}}
-                        </div>
+            <div class="product-grid">
+                <div class="product-image-area">
+                    <div class="product-large-img">
+                        <img src="{{product.imageUrls.[0]}}" alt="{{product.name}}" class="product-image" id="main-product-image">
                     </div>
-                    <div class="shop-thumb-tab mb-30">
-                        <ul class="nav" id="myTab2" role="tablist">
-                            {{#each product.imageUrls}}
-                            <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-selected="true"><img src="{{product}}" alt=""></a>
-                            </li>
-                            {{/each}}
-                        </ul>
+                    <div class="product-thumbnails">
+                        {{#each product.imageUrls}}
+                        <img src="{{this}}" alt="Thumbnail {{@index}}" class="thumbnail" onclick="changeMainImage(this.src)">
+                        {{/each}}
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-8">
-                    <div class="product-details mb-30 pl-30">
-                        <div class="details-cat mb-20">
-                            <a href="#">{{product.category1}}</a>,
-                            <a href="#">{{product.category2}}</a>
+                <div class="product-info-area">
+                    <div class="details-cat mb-20">
+                        <a href="#">{{product.category1}}</a>, <a href="#">{{product.category2}}</a>
+                    </div>
+                    <h1 class="product-title">{{product.name}}</h1>
+                    <div class="product-price">
+                        <span>₹{{product.price}}</span>
+                        <span class="old-price">₹{{product.oldprice}}</span>
+                    </div>
+                    <p class="product-description">{{product.description}}</p>
+                    <div class="product-meta">
+                        <div class="product-meta-item">
+                            <span class="product-meta-label">Brand:</span>
+                            <span>{{product.brand.name}}</span>
                         </div>
-                        <h2 class="pro-details-title mb-15">{{product.name}}</h2>
-                        <div class="details-price mb-20">
-                            <span>{{product.price}}</span>
-                            <span class="old-price">{{product.oldprice}}</span>
+                        <div class="product-meta-item">
+                            <span class="product-meta-label">Product Code:</span>
+                            <span>d12</span>
                         </div>
-                        <div class="product-variant">
-                            <div class="product-desc variant-item">
-                                <p>{{product.description}}</p>
-                            </div>
-                            <div class="product-info-list variant-item">
-                                <ul>
-                                    <li><span>Brands:</span> Hewlett-Packard</li>
-                                    <li><span>Product Code:</span> d12</li>
-                                    <li><span>Reward Points:</span> 100</li>
-                                    <li><span>Stock:</span> <span class="in-stock">In Stock</span></li>
-                                </ul>
-                            </div>
-                            <div class="product-action-details variant-item">
-                                <div class="product-details-action">
-                                    <form action="#">
-                                        <div class="plus-minus">
-                                            <div class="cart-plus-minus"><input type="text" value="1" /></div>
-                                        </div>
-                                        <button class="details-action-icon" type="submit"><i
-                                                class="fas fa-heart"></i></button>
-                                        <button class="details-action-icon" type="submit"><i
-                                                class="fas fa-hourglass"></i></button>
-                                                <a href="/cart?q={{product._id}}" class="btn theme-btn">+Add To Cart</a>
-                                    </form>
-                                </div>
-                            </div>
+                        <div class="product-meta-item">
+                            <span class="product-meta-label">Reward Points:</span>
+                            <span>100</span>
+                        </div>
+                        <div class="product-meta-item">
+                            <span class="product-meta-label">Availability:</span>
+                            <span class="in-stock">In Stock</span>
                         </div>
                     </div>
+                    <form action="/cart" method="GET">
+                    <input type="hidden" name="q" value="{{product._id}}">
+                    <div class="product-actions">
+                        <div class="plus-minus">
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                        </div>
+                        <button type="submit" class="add-to-cart-btn">+ Add to Cart</button>
+                        <button type="button" class="action-btn" title="Add to Wishlist"><i class="fas fa-heart"></i></button>
+                        <button type="button" class="action-btn" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                    </div>
+                </form>
                 </div>
             </div>
-            <div class="row mt-50">
-                <div class="col-xl-8 col-lg-8">
-                    <div class="product-review">
-                        <ul class="nav review-tab" id="myTabproduct" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab6" data-toggle="tab" href="#home6" role="tab"
-                                    aria-controls="home" aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab6" data-toggle="tab" href="#profile6" role="tab"
-                                    aria-controls="profile" aria-selected="false">Reviews (2)</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent2">
-                            <div class="tab-pane fade show active" id="home6" role="tabpanel"
-                                aria-labelledby="home-tab6">
-                                <div class="desc-text">
-                                    <p>{{product.description}}</p>
-                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
-                                        quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                        porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                                        velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                                        magnam aliquam quaerat voluptatem.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile6" role="tabpanel" aria-labelledby="profile-tab6">
-                                <div class="desc-text review-text">
-                                    <div class="product-commnets">
-                                        <div class="product-commnets-list mb-25 pb-15">
-                                            <div class="pro-comments-img">
-                                                <img src="img/product/comments/01.png" alt="">
-                                            </div>
-                                            <div class="pro-commnets-text">
-                                                <h4>Roger West -
-                                                    <span>June 5, 2018</span>
-                                                </h4>
-                                                <div class="pro-rating">
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation.</p>
-                                            </div>
-                                        </div>
-                                        <div class="product-commnets-list mb-25 pb-15">
-                                            <div class="pro-comments-img">
-                                                <img src="img/product/comments/02.png" alt="">
-                                            </div>
-                                            <div class="pro-commnets-text">
-                                                <h4>Roger West -
-                                                    <span>June 5, 2018</span>
-                                                </h4>
-                                                <div class="pro-rating">
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="review-box mt-50">
-                                        <h4>Add a Review</h4>
-                                        <div class="your-rating mb-40">
-                                            <span>Your Rating:</span>
-                                            <div class="rating-list">
-                                                <a href="#"><i class="far fa-star"></i></a>
-                                                <a href="#"><i class="far fa-star"></i></a>
-                                                <a href="#"><i class="far fa-star"></i></a>
-                                                <a href="#"><i class="far fa-star"></i></a>
-                                                <a href="#"><i class="far fa-star"></i></a>
-                                            </div>
-                                        </div>
-                                        <form class="review-form" action="#">
-                                            <div class="row">
-                                                <div class="col-xl-12">
-                                                    <label for="message">YOUR REVIEW</label>
-                                                    <textarea name="message" id="message" cols="30"
-                                                        rows="10"></textarea>
-                                                </div>
-                                                <div class="col-xl-6">
-                                                    <label for="r-name">Name</label>
-                                                    <input type="text" id="r-name">
-                                                </div>
-                                                <div class="col-xl-6">
-                                                    <label for="r-email">Email</label>
-                                                    <input type="email" id="r-email">
-                                                </div>
-                                                <div class="col-xl-12">
-                                                    <button class="btn theme-btn">Add your Review</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'description')">Description</button>
+                    <button class="tab-button" onclick="openTab(event, 'reviews')">Reviews</button>
                 </div>
-                <div class="col-xl-4 col-lg-4">
-                    <div class="pro-details-banner">
-                        <a href="shop.html"><img src="img/banner/pro-details.jpg" alt=""></a>
+                <div id="description" class="tab-content">
+                    <p>{{product.fullDescription}}</p>
+                </div>
+                <div id="reviews" class="tab-content" style="display:none;">
+                    {{#each product.reviews}}
+                    <div class="review">
+                        <div class="review-author">{{this.author}}</div>
+                        <div class="review-date">{{this.date}}</div>
+                        <p>{{this.content}}</p>
                     </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="related-products">
+                <h2 class="related-products-title">Related Products</h2>
+                <div class="related-products-grid">
+                    {{#each firstPartProducts}}
+                    <div class="related-product-item">
+                        <a href="/productinfo?q={{this._id}}">
+                            <img src="{{this.imageUrls.[0]}}" alt="{{this.name}}" class="related-product-image">
+                            <h3 class="related-product-title">{{this.name}}</h3>
+                            <div class="related-product-price">₹{{this.price}}</div>
+                        </a>
+                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- shop-area end -->
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('main-product-image').src = src;
+        }
 
-    <!-- product-area start -->
-    <section class="product-area pb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="area-title text-center mb-50">
-                        <h2>Releted Products</h2>
-                        <p>Browse the huge variety of our products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-slider-2 owl-carousel">
-                <div class="pro-item">
-                    <div class="product-wrapper">
-                        <div class="product-img mb-25">
-                            <a href="product-details.html">
-                                <img src="img/product/pro4.jpg" alt="">
-                                <img class="secondary-img" src="img/product/pro5.jpg" alt="">
-                            </a>
-                            <div class="product-action text-center">
-                                <a href="#" title="Shoppingb Cart">
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                                <a href="#" title="Quick View">
-                                    <i class="flaticon-eye"></i>
-                                </a>
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                    <i class="flaticon-compare"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="pro-cat mb-10">
-                                <a href="shop.html">decor, </a>
-                                <a href="shop.html">furniture</a>
-                            </div>
-                            <h4>
-                                <a href="product-details.html">Raglan Baseball Style shirt</a>
-                            </h4>
-                            <div class="product-meta">
-                                <div class="pro-price">
-                                    <span>$119.00 USD</span>
-                                    <span class="old-price">$230.00 USD</span>
-                                </div>
-                            </div>
-                            <div class="product-wishlist">
-                                <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pro-item">
-                    <div class="product-wrapper">
-                        <div class="product-img mb-25">
-                            <a href="product-details.html">
-                                <img src="img/product/pro5.jpg" alt="">
-                                <img class="secondary-img" src="img/product/pro6.jpg" alt="">
-                            </a>
-                            <div class="product-action text-center">
-                                <a href="#" title="Shoppingb Cart">
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                                <a href="#" title="Quick View">
-                                    <i class="flaticon-eye"></i>
-                                </a>
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                    <i class="flaticon-compare"></i>
-                                </a>
-                            </div>
-                            <div class="sale-tag">
-                                <span class="new">new</span>
-                                <span class="sale">sale</span>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="pro-cat mb-10">
-                                <a href="shop.html">decor, </a>
-                                <a href="shop.html">furniture</a>
-                            </div>
-                            <h4>
-                                <a href="product-details.html">Raglan Baseball Style shirt</a>
-                            </h4>
-                            <div class="product-meta">
-                                <div class="pro-price">
-                                    <span>$119.00 USD</span>
-                                    <span class="old-price">$230.00 USD</span>
-                                </div>
-                            </div>
-                            <div class="product-wishlist">
-                                <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pro-item">
-                    <div class="product-wrapper">
-                        <div class="product-img mb-25">
-                            <a href="product-details.html">
-                                <img src="img/product/pro7.jpg" alt="">
-                                <img class="secondary-img" src="img/product/pro8.jpg" alt="">
-                            </a>
-                            <div class="product-action text-center">
-                                <a href="#" title="Shoppingb Cart">
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                                <a href="#" title="Quick View">
-                                    <i class="flaticon-eye"></i>
-                                </a>
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                    <i class="flaticon-compare"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="pro-cat mb-10">
-                                <a href="shop.html">decor, </a>
-                                <a href="shop.html">furniture</a>
-                            </div>
-                            <h4>
-                                <a href="product-details.html">Raglan Baseball Style shirt</a>
-                            </h4>
-                            <div class="product-meta">
-                                <div class="pro-price">
-                                    <span>$119.00 USD</span>
-                                    <span class="old-price">$230.00 USD</span>
-                                </div>
-                            </div>
-                            <div class="product-wishlist">
-                                <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pro-item">
-                    <div class="product-wrapper">
-                        <div class="product-img mb-25">
-                            <a href="product-details.html">
-                                <img src="img/product/pro9.jpg" alt="">
-                                <img class="secondary-img" src="img/product/pro10.jpg" alt="">
-                            </a>
-                            <div class="product-action text-center">
-                                <a href="#" title="Shoppingb Cart">
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                                <a href="#" title="Quick View">
-                                    <i class="flaticon-eye"></i>
-                                </a>
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                    <i class="flaticon-compare"></i>
-                                </a>
-                            </div>
-                            <div class="sale-tag">
-                                <span class="new">new</span>
-                                <span class="sale">sale</span>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="pro-cat mb-10">
-                                <a href="shop.html">decor, </a>
-                                <a href="shop.html">furniture</a>
-                            </div>
-                            <h4>
-                                <a href="product-details.html">Raglan Baseball Style shirt</a>
-                            </h4>
-                            <div class="product-meta">
-                                <div class="pro-price">
-                                    <span>$119.00 USD</span>
-                                    <span class="old-price">$230.00 USD</span>
-                                </div>
-                            </div>
-                            <div class="product-wishlist">
-                                <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pro-item">
-                    <div class="product-wrapper">
-                        <div class="product-img mb-25">
-                            <a href="product-details.html">
-                                <img src="img/product/pro1.jpg" alt="">
-                                <img class="secondary-img" src="img/product/pro11.jpg" alt="">
-                            </a>
-                            <div class="product-action text-center">
-                                <a href="#" title="Shoppingb Cart">
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                                <a href="#" title="Quick View">
-                                    <i class="flaticon-eye"></i>
-                                </a>
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                    <i class="flaticon-compare"></i>
-                                </a>
-                            </div>
-                            <div class="sale-tag">
-                                <span class="new">new</span>
-                                <span class="sale">sale</span>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="pro-cat mb-10">
-                                <a href="shop.html">decor, </a>
-                                <a href="shop.html">furniture</a>
-                            </div>
-                            <h4>
-                                <a href="product-details.html">Raglan Baseball Style shirt</a>
-                            </h4>
-                            <div class="product-meta">
-                                <div class="pro-price">
-                                    <span>$119.00 USD</span>
-                                    <span class="old-price">$230.00 USD</span>
-                                </div>
-                            </div>
-                            <div class="product-wishlist">
-                                <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- product-area end -->
-
-
-</main>
-
-<!-- footer start -->
-{{>footer}}
-<!-- footer end -->
-
-<!-- Fullscreen search -->
-{{>search}} <!-- end fullscreen search -->
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>

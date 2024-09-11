@@ -2,6 +2,54 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const addressSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    streetAddress: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    postalCode: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    }
+});
+
+
+const Address = mongoose.model("Address", addressSchema);
+
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -87,4 +135,4 @@ const deletedUserSchema = new mongoose.Schema({
 
 const DeletedUser = mongoose.model("DeletedUser", deletedUserSchema);
 
-module.exports = { User, DeletedUser };
+module.exports = { User, DeletedUser ,Address};
