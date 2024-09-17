@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Navbar</title>
+    <title>Navbar</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: #f8f5f2;
+            color: #333;
         }
         .navbar {
             background-color: #1c1c1c;
             padding: 15px 0;
-            position: relative;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
         .navbar::after {
             content: '';
@@ -29,10 +33,10 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
         .logo a {
             font-family: 'Playfair Display', serif;
@@ -63,10 +67,6 @@
         .nav-links a:hover {
             color: #c0a080;
         }
-        .nav-icons {
-            display: flex;
-            align-items: center;
-        }
         .nav-icons a {
             color: #c0a080;
             font-size: 18px;
@@ -90,17 +90,9 @@
             font-size: 10px;
             font-weight: 600;
         }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .logo a {
-                font-size: 24px;
-            }
-            .nav-icons a {
-                font-size: 16px;
-                margin-left: 15px;
-            }
+        /* Add margin to the body content to account for the fixed navbar */
+        body {
+            padding-top: 70px; /* Adjust this value based on the height of your navbar */
         }
     </style>
 </head>
@@ -119,52 +111,13 @@
             </ul>
             <div class="nav-icons">
                 <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
-                <a href='/profile' class="user-icon"><i class="far fa-user"></i></a>
+                <a href="/profile" class="user-icon"><i class="far fa-user"></i></a>
                 <a href="/showCart" class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
+                    <span class="cart-count"></span>
                 </a>
             </div>
         </div>
     </nav>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const profileToggle = document.getElementById('profileToggle');
-        const profilePopup = document.getElementById('profilePopup');
-        const editProfileBtn = document.getElementById('editProfileBtn');
-        const editUserForm = document.getElementById('editUserForm');
-
-        profileToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            profilePopup.style.display = profilePopup.style.display === 'block' ? 'none' : 'block';
-        });
-
-        editProfileBtn.addEventListener('click', function() {
-            editUserForm.style.display = 'block';
-            editProfileBtn.style.display = 'none';
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!profilePopup.contains(e.target) && e.target !== profileToggle) {
-                profilePopup.style.display = 'none';
-                editUserForm.style.display = 'none';
-                editProfileBtn.style.display = 'block';
-            }
-        });
-
-        editUserForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically send an AJAX request to update the user profile
-            console.log('Update profile:', {
-                username: document.getElementById('username').value,
-                phone: document.getElementById('phone').value
-            });
-            // After successful update, you might want to show a success message or close the popup
-            editUserForm.style.display = 'none';
-            editProfileBtn.style.display = 'block';
-        });
-    });
-</script>
 </body>
 </html>

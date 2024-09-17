@@ -6,7 +6,7 @@ const bannerSchema = new mongoose.Schema({
     leftimg: { type: String, required: true },
     rightimg: { type: String, required: true },
     bgtext: { type: String, required: true },
-    decollection: { type: String, required: true }
+    description: { type: String, required: true }
 });
 
 const midBannerSchema = new mongoose.Schema({

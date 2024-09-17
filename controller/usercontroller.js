@@ -608,8 +608,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const home = async (req, res) => {
     try {
         const products = await Product.find({ isActive: true }).sort({ createdAt: -1 }).limit(25).populate('brand').exec();
-        const firstPartProducts = products.slice(0, 12);
-        const remainingProducts = products.slice(12);
+        const firstPartProducts = products.slice(0, 6);
+        const remainingProducts = products.slice(6,12);
 
         const banners = await Banner.find().sort({ createdAt: -1 });
 

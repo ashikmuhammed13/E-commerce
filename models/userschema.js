@@ -49,7 +49,7 @@ const addressSchema = new mongoose.Schema({
 
 const Address = mongoose.model("Address", addressSchema);
 
-
+ 
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -102,7 +102,7 @@ const userSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-// Save password
+// Save password 
 userSchema.pre("save", async function (next) {
     if (this.isModified('password')) {
         const salt = await bcrypt.genSalt(10);
