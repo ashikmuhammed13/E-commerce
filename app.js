@@ -8,7 +8,8 @@ require('dotenv').config();
 const methodOverride = require('method-override');
 const MongoDbStore = require('connect-mongodb-session')(session);
 const db = require('./config/dbConfig'); // Import the mongoose connection
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const socketIo = require('socket.io');
+const http = require('http');
 
 const PORT = process.env.PORT || 3001;
 
@@ -16,6 +17,8 @@ const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin');
 
 const app = express();
+const server = http.createServer(app); // Create an HTTP server instance
+const io = socketIo(server); // Pass the server to socket.io
 
 app.use(methodOverride('_method'));
 
@@ -51,6 +54,11 @@ app.engine('hbs', hbs.engine({
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true
+  },
+  helpers: {
+    eq: function (a, b) {
+      return a === b;
+    }
   }
 }));
 
@@ -62,15 +70,44 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
-app.post('/checkout', (req, res) => {
-  console.log("bbhjbhjbjhbhjb",req.body);  // This should log all form data if working correctly
-  res.send('Form submitted');
+
+// Predefined Q&A object
+const predefinedResponses = {
+  "What are your store hours?": "We are open from 9 AM to 9 PM, Monday to Saturday.",
+  "What is your return policy?": "You can return items within 30 days of purchase for a full refund.",
+  "Do you offer gift wrapping?": "Yes, we offer gift wrapping for an additional fee.",
+  "Where are you located?": "We are located at 123 Luxe Street, Cityville.",
+  "Can I track my order?": "Yes, you can track your order using the tracking link sent to your email.",
+};
+
+// Socket connection
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  socket.on('user message', (msg) => {
+      console.log('User message:', msg);
+      let response;
+
+      // Check if the message matches any predefined questions
+      if (predefinedResponses[msg]) {
+          response = predefinedResponses[msg];
+      } else {
+          response = "I'm sorry, I don't have an answer for that.";
+      }
+
+      // Send the response back to the client
+      socket.emit('bot response', response);
+  });
+
+  socket.on('disconnect', () => {
+      console.log('User disconnected');
+  });
 });
 
- 
-app.listen(PORT, () => {
+
+// Start the server
+server.listen(PORT, () => { // Use the server instance here
   console.log('Server is running on port:', PORT);
 });
 
-
-module.exports = {app};
+module.exports = { app };

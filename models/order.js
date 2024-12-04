@@ -6,7 +6,12 @@ const orderSchema = new mongoose.Schema({
     items: [{
         product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
         quantity: { type: Number, required: true },
-        price: { type: Number, required: true }
+        price: { type: Number, required: true },
+        isReturn: { 
+            type: String, 
+            enum: ['pending', 'processing', 'refunded', 'requested'], 
+            default: 'pending' 
+        }
     }],
     shippingAddress: { type: mongoose.Schema.Types.ObjectId, ref: 'Address', required: true },
     totalAmount: { type: Number, required: true },
@@ -14,7 +19,11 @@ const orderSchema = new mongoose.Schema({
     discountAmount: { type: String },
     paymentMethod: { type: String, required: true },
     paymentIntentId: { type: String },
-    status: { type: String, enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled', 'paid'], default: 'pending' },
+    status: { 
+        type: String, 
+        enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled', 'paid'], 
+        default: 'pending' 
+    },
     stripeSessionId: { type: String },
     refund: { type: Boolean, default: false },
     stockUpdated: { type: Boolean, default: false },

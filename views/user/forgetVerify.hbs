@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f5f2;
+            color: #1c1c1c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+        }
+        .otp-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .otp-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .otp-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: #1c1c1c;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .otp-header p {
+            color: #666;
+            font-size: 14px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1c1c1c;
+            font-weight: 600;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: border-color 0.3s ease;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #c0a080;
+        }
+        .verify-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #c0a080;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .verify-button:hover {
+            background-color: #a88b6a;
+        }
+        .resend-otp {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .resend-otp a {
+            color: #c0a080;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .resend-otp a:hover {
+            color: #a88b6a;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <div class="otp-header">
+            <h1>Verify OTP</h1>
+            <p>Enter the verification code sent to your email</p>
+        </div>
+        <form action="/otpCheck" method="POST">
+            <div class="input-group">
+                <label for="otp">Verification Code</label>
+                <input type="text" id="otp" name="otp" required>
+            </div>
+            <button type="submit" class="verify-button">Verify</button>
+        </form>
+        <div class="resend-otp">
+            <a href="#" id="resendOTP">Resend verification code</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resendOTP').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Add your resend OTP logic here
+            alert('Verification code resent. Please check your email.');
+        });
+    </script>
+</body>
+</html>

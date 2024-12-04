@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar</title>
+    <title>Navbar with Luxurious Search</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -12,6 +12,7 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #f8f5f2;
             color: #333;
+            padding-top: 70px;
         }
         .navbar {
             background-color: #1c1c1c;
@@ -67,6 +68,10 @@
         .nav-links a:hover {
             color: #c0a080;
         }
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
         .nav-icons a {
             color: #c0a080;
             font-size: 18px;
@@ -90,34 +95,103 @@
             font-size: 10px;
             font-weight: 600;
         }
-        /* Add margin to the body content to account for the fixed navbar */
-        body {
-            padding-top: 70px; /* Adjust this value based on the height of your navbar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .search-input {
+            background-color: #333;
+            border: 1px solid #c0a080;
+            color: #fff;
+            padding: 10px 40px 10px 15px;
+            font-size: 14px;
+            border-radius: 20px;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            background-color: #444;
+            outline: none;
+            box-shadow: 0 0 5px rgba(192, 160, 128, 0.5);
+            width: 220px;
+        }
+        .search-btn {
+            background: none;
+            border: none;
+            color: #c0a080;
+            font-size: 18px;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: color 0.3s ease;
+        }
+        .search-btn:hover {
+            color: #fff;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="/">LUXE</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/sale">Sale</a></li>
-                <li><a href="/shop">Shop</a></li>
-                <li><a href="/wishlist">Wishlist</a></li>
-                <li><a href="/showCart">Cart</a></li>
-            </ul>
-            <div class="nav-icons">
-                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
-                <a href="/profile" class="user-icon"><i class="far fa-user"></i></a>
-                <a href="/showCart" class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count"></span>
-                </a>
-            </div>
+    <div class="container">
+        <div class="logo">
+            <a href="/">LUXE</a>
         </div>
-    </nav>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sale">Sale</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/wishlist">Wishlist</a></li>
+            <li><a href="/showCart">Cart</a></li>
+        </ul>
+        <div class="nav-icons">
+            <!-- Search Bar Container -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <!-- Profile and Cart Icons -->
+            <a href="/profile" class="user-icon"><i class="far fa-user"></i></a>
+            <a href="/showCart" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Search functionality
+    document.querySelector('.search-btn').addEventListener('click', function() {
+        const searchQuery = document.querySelector('.search-input').value.trim();
+        if (searchQuery !== '') {
+            window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+        }
+    });
+
+    document.querySelector('.search-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.querySelector('.search-btn').click();
+        }
+    });
+
+    // Example to populate cart count dynamically
+    // Assuming you have a way to fetch cart data, e.g., via AJAX or API.
+    function updateCartCount() {
+        const cartCount = 5; // Example value, replace with actual count
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCount > 0) {
+            cartCountElement.textContent = cartCount;
+        } else {
+            cartCountElement.style.display = 'none';
+        }
+    }
+
+    // Call updateCartCount on page load
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+</script>
+
 </body>
 </html>

@@ -8,167 +8,273 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f8f5f2;
-            color: #333;
-        }
-        .navbar {
-            background-color: #1c1c1c;
-            padding: 15px 0;
-        }
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            color: #c0a080 !important;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        .nav-link {
-            color: #fff !important;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #c0a080 !important;
-        }
-        .breadcrumb-area {
-            background-image: url('img/bg/page-title.png');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 0;
-            position: relative;
-        }
-        .breadcrumb-area::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(28, 28, 28, 0.7);
-        }
-        .breadcrumb-text {
-            position: relative;
-            z-index: 1;
-        }
-        .breadcrumb-text h1 {
-            color: #c0a080;
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        .breadcrumb-menu {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        .breadcrumb-menu li {
-            display: inline-block;
-            color: #fff;
-            font-size: 14px;
-        }
-        .breadcrumb-menu li:not(:last-child)::after {
-            content: '/';
-            margin: 0 5px;
-            color: #c0a080;
-        }
-        .breadcrumb-menu li a {
-            color: #c0a080;
-            text-decoration: none;
-        }
-        .cart-area {
-            padding: 80px 0;
-        }
-        .table {
-            border-collapse: separate;
-            border-spacing: 0 15px;
-        }
-        .table thead th {
-            border-bottom: 2px solid #c0a080;
-            color: #1c1c1c;
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 15px;
-            text-transform: uppercase;
-        }
-        .table tbody td {
-            background-color: #fff;
-            border: none;
-            padding: 20px 15px;
-            vertical-align: middle;
-        }
-        .table tbody tr {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-        .table tbody tr:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-        }
-        .product-thumbnail img {
-            max-width: 80px;
-            border-radius: 5px;
-        }
-        .product-name a {
-            color: #1c1c1c;
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .product-name a:hover {
-            color: #c0a080;
-        }
-        .amount {
-            color: #c0a080;
-            font-weight: 600;
-        }
-        .btn-add-to-cart {
-            background-color: #c0a080;
-            border: none;
-            color: #1c1c1c;
-            padding: 10px 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-        .btn-add-to-cart:hover {
-            background-color: #1c1c1c;
-            color: #c0a080;
-        }
-        .product-remove a {
-            color: #1c1c1c;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-        .product-remove a:hover {
-            color: #c0a080;
-        }
-        footer {
-            background-color: #1c1c1c;
-            color: #fff;
-            padding: 50px 0;
-        }
-        .footer-widget h3 {
-            color: #c0a080;
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .footer-widget ul {
-            list-style: none;
-            padding: 0;
-        }
-        .footer-widget ul li a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-widget ul li a:hover {
-            color: #c0a080;
-        }
+
+/* General styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f5f2;
+    color: #333;
+}
+
+/* Navigation styles */
+.navbar {
+    background-color: #1c1c1c;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    color: #c0a080 !important;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-link {
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #c0a080 !important;
+}
+
+/* Breadcrumb styles */
+.breadcrumb-area {
+    background-image: url('img/bg/page-title.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    position: relative;
+}
+
+.breadcrumb-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(28, 28, 28, 0.7);
+}
+
+.breadcrumb-text {
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumb-text h1 {
+    color: #c0a080;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.breadcrumb-menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.breadcrumb-menu li {
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+}
+
+.breadcrumb-menu li:not(:last-child)::after {
+    content: '/';
+    margin: 0 5px;
+    color: #c0a080;
+}
+
+.breadcrumb-menu li a {
+    color: #c0a080;
+    text-decoration: none;
+}
+
+/* Cart and Wishlist area styles */
+.cart-area, .wishlist-area {
+    padding: 80px 0;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.table thead th {
+    border-bottom: 2px solid #c0a080;
+    color: #1c1c1c;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+.table tbody td {
+    background-color: #fff;
+    border: none;
+    padding: 20px 15px;
+    vertical-align: middle;
+}
+
+.table tbody tr {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.product-thumbnail img {
+    max-width: 80px;
+    border-radius: 5px;
+}
+
+.product-name a {
+    color: #1c1c1c;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.product-name a:hover {
+    color: #c0a080;
+}
+
+.amount {
+    color: #c0a080;
+    font-weight: 600;
+}
+
+.btn-add-to-cart, .btn-luxury {
+    background-color: #c0a080;
+    border: none;
+    color: #1c1c1c;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-add-to-cart:hover, .btn-luxury:hover {
+    background-color: #1c1c1c;
+    color: #c0a080;
+}
+
+.product-remove a {
+    color: #1c1c1c;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.product-remove a:hover {
+    color: #c0a080;
+}
+
+/* Empty wishlist and login required styles */
+.empty-wishlist-container {
+    border: 1px solid #c0a080;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.empty-wishlist-icon {
+    font-size: 64px;
+    color: #c0a080;
+    margin-bottom: 20px;
+}
+
+.empty-wishlist-title {
+    font-family: 'Playfair Display', serif;
+    color: #1c1c1c;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.empty-wishlist-message {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn-luxury {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 12px 30px;
+    font-size: 16px;
+}
+
+.text-luxury {
+    color: #c0a080;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text-luxury:hover {
+    color: #1c1c1c;
+}
+
+/* Footer styles */
+footer {
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.footer-widget h3 {
+    color: #c0a080;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-widget ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-widget ul li a:hover {
+    color: #c0a080;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 24px;
+    }
+
+    .breadcrumb-text h1 {
+        font-size: 36px;
+    }
+
+    .empty-wishlist-title {
+        font-size: 28px;
+    }
+
+    .empty-wishlist-message {
+        font-size: 16px;
+    }
+
+    .btn-luxury {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body>
@@ -197,23 +303,24 @@
         </div>
     </nav>
 
-    <main>
-        <section class="breadcrumb-area" data-background="img/bg/page-title.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="breadcrumb-text text-center">
-                            <h1>Wishlist</h1>
-                            <ul class="breadcrumb-menu">
-                                <li><a href="/">Home</a></li>
-                                <li><span>Wishlist</span></li>
-                            </ul>
-                        </div>
+  <main>
+    <section class="breadcrumb-area" data-background="img/bg/page-title.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-text text-center">
+                        <h1>Wishlist</h1>
+                        <ul class="breadcrumb-menu">
+                            <li><a href="/">Home</a></li>
+                            <li><span>Wishlist</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
+    {{#if wishlist.products.length}}
         <section class="cart-area pt-100 pb-100">
             <div class="container">
                 <div class="row">
@@ -231,26 +338,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="#"><img src="img/product/pro1.jpg" alt="Luxury Chair"></a></td>
-                                        <td class="product-name"><a href="#">Elegant Velvet Armchair</a></td>
-                                        <td class="product-price"><span class="amount">$599.00</span></td>
-                                        <td class="product-quantity">
-                                            <button class="btn btn-add-to-cart" type="button">Add to Cart</button>
-                                        </td>
-                                        <td class="product-subtotal"><span class="amount">$599.00</span></td>
-                                        <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="#"><img src="img/product/pro2.jpg" alt="Luxury Table Set"></a></td>
-                                        <td class="product-name"><a href="#">Marble Top Dining Set</a></td>
-                                        <td class="product-price"><span class="amount">$1,299.00</span></td>
-                                        <td class="product-quantity">
-                                            <button class="btn btn-add-to-cart" type="button">Add to Cart</button>
-                                        </td>
-                                        <td class="product-subtotal"><span class="amount">$1,299.00</span></td>
-                                        <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                    </tr>
+                                    {{#each wishlist.products}}
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="/productinfo?q={{this._id}}">
+                                                    <img src="{{this.imageUrls.[0]}}" alt="{{this.name}}" class="related-product-image">
+                                                </a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a href="/productinfo?q={{this._id}}">{{this.name}}</a>
+                                            </td>
+                                            <td class="product-price">
+                                                <span class="amount">₹{{this.price}}</span>
+                                            </td>
+                                            <td class="product-quantity">
+                                                <a href="/cart?q={{this._id}}" class="btn btn-add-to-cart">Add to Cart</a>
+                                            </td>
+                                            {{!-- <td class="product-quantity"></td>
+                                                <button class="btn btn-add-to-cart" type="button" data-product-id="{{this._id}}">Add to Cart</button>
+                                            </td> --}}
+                                            <td class="product-subtotal">
+                                                <span class="amount">₹{{this.price}}</span>
+                                            </td>
+                                            <td class="product-remove">
+                                                <a href="/removeWishlist?q={{this._id}}"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
                                 </tbody>
                             </table>
                         </div>
@@ -258,7 +372,43 @@
                 </div>
             </div>
         </section>
-    </main>
+    {{else}}
+        {{#if user}} <!-- Assuming 'user' is passed to the template -->
+            <section class="wishlist-area py-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 text-center">
+                            <div class="empty-wishlist-container p-5 bg-white shadow-lg rounded">
+                                <i class="fas fa-heart empty-wishlist-icon mb-4"></i>
+                                <h2 class="empty-wishlist-title mb-3">Your Wishlist is Empty</h2>
+                                <p class="empty-wishlist-message mb-4">Discover our exquisite collection and add your favorite pieces to your wishlist.</p>
+                                <a href="/shop" class="btn btn-luxury btn-lg">Explore Our Collection</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {{else}}
+            <section class="wishlist-area py-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 text-center">
+                            <div class="empty-wishlist-container p-5 bg-white shadow-lg rounded">
+                                <i class="fas fa-user-lock empty-wishlist-icon mb-4"></i>
+                                <h2 class="empty-wishlist-title mb-3">Login Required</h2>
+                                <p class="empty-wishlist-message mb-4">Please log in to view your wishlist and save your favorite luxury items.</p>
+                                <a href="/login" class="btn btn-luxury btn-lg">Login</a>
+                                <p class="mt-3">Don't have an account? <a href="/register" class="text-luxury">Register here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {{/if}}
+    {{/if}}
+
+</main>
+
 
     <footer>
         <div class="container">

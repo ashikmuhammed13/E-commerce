@@ -3,25 +3,19 @@ const mongoose = require('mongoose');
 const bannerSchema = new mongoose.Schema({
     bgimage: { type: String, required: true },
     maintext: { type: String, required: true },
-    leftimg: { type: String, required: true },
-    rightimg: { type: String, required: true },
     bgtext: { type: String, required: true },
-    description: { type: String, required: true }
+    description: { type: String, required: true } // 'description' is required
 });
+
 
 const midBannerSchema = new mongoose.Schema({
     image1: { type: String, required: true },
-    image2: { type: String, required: true },
-    image3: { type: String, required: true }
 });
 
 const botBannerSchema = new mongoose.Schema({
     bkimage: { type: String, required: true },
     title: { type: String, required: true },
-    price: { type: String, required: true },
     dscrptext: { type: String, required: true },
-    imglink1: { type: String, required: true },
-    imglink2: { type: String, required: true }
 });
 
 const saleBannerSchema = new mongoose.Schema({

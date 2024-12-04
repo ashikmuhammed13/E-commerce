@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <style>
-        body {
+         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #f8f5f2;
             color: #333;
@@ -48,29 +48,33 @@
         }
         .profile-header {
             background-color: #1c1c1c;
-            color: #c0a080;
+            color: #8d7f8d;
             padding: 40px 0;
         }
         .profile-header h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
+            color: #8d7f8d;
         }
         .card {
             border: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
+            background-color: #fff;
         }
         .card-header {
             background-color: #1c1c1c;
             color: #c0a080;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
+            padding: 15px 20px;
         }
         .table {
             color: #333;
         }
         .table thead th {
             border-bottom: 2px solid #c0a080;
+            background-color: #f8f5f2;
         }
         .btn-primary {
             background-color: #c0a080;
@@ -81,6 +85,81 @@
             background-color: #1c1c1c;
             border-color: #c0a080;
             color: #c0a080;
+        }
+        .wallet-balance {
+            font-size: 24px;
+            font-weight: 600;
+            color: #c0a080;
+            margin-bottom: 20px;
+        }
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #1c1c1c;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .modal-content {
+            background-color: #f8f5f2;
+            border: none;
+        }
+        .modal-header {
+            background-color: #1c1c1c;
+            color: #c0a080;
+            border-bottom: none;
+        }
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        #invoice {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+        }
+        #invoice h1 {
+            color: #4a4a4a;
+            margin: 0;
+        }
+        #invoice h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        #invoice h3 {
+            color: #2c3e50;
+        }
+        #invoice ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #invoice li {
+            background-color: #ecf0f1;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #invoice .total-amount {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: right;
+            color: #e74c3c;
         }
     </style>
 </head>
@@ -102,11 +181,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile</a>
                     </li>
-                    <a href="/logout">
                     <li class="nav-item">
-                        <button class="btn btn-logout">Logout</button>
+                        <a href="/logout" class="btn btn-logout">Logout</a>
                     </li>
-                    </a>
                 </ul>
             </div>
         </div>
@@ -126,9 +203,17 @@
                     User Information
                 </div>
                 <div class="card-body">
-                    <p><strong>Email:</strong> {{user.email}}</p>
                     <p><strong>Phone:</strong> {{user.phone}}</p>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    Wallet Balance
+                </div>
+                <div class="card-body">
+                    <div class="wallet-balance">${{user.wallet}}</div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFundsModal">Add Funds</button>
                 </div>
             </div>
         </div>
@@ -142,11 +227,10 @@
                         <thead>
                             <tr>
                                 <th>Products</th>
-                                
                                 <th>Date</th>
                                 <th>Total</th>
                                 <th>Status</th>
-                                <th>Quantity</th> <!-- New column for quantity -->
+                                <th>Quantity</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -161,20 +245,32 @@
                                     </div>
                                     {{/each}}
                                 </td>
-                                
-                                {{!-- <td>{{formatDate this.datePlaced}}</td> --}}
+                                <td>{{this.datePlaced}}</td>
                                 <td>${{this.totalAmount}}</td>
                                 <td>{{this.status}}</td>
                                 <td>
                                     {{#each this.items}}
                                     <p>{{this.quantity}}</p>
                                     {{/each}}
-                                </td> <!-- Display quantity -->
+                                </td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#orderDetailsModal{{this._id}}">Details</button>
-                                    {{!-- {{#if (eq this.status "delivered")}}
-                                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#returnModal{{this._id}}">Return</button>
-                                    {{/if}} --}}
+                                    <button class="btn btn-sm btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#orderDetailsModal{{this._id}}">Details</button>
+
+                                    {{#if (eq this.status "delivered")}}
+                                        {{#each this.items}}
+                                            {{#if (eq this.isReturn "requested")}}
+                                                <button class="btn btn-sm btn-secondary mb-1" disabled>Requested</button>
+                                            {{else if (eq this.isReturn "refunded")}}
+                                                <button class="btn btn-sm btn-success mb-1" disabled>Refunded</button>
+                                            {{else}}
+                                                <button class="btn btn-sm btn-warning mb-1" data-bs-toggle="modal" data-bs-target="#returnModal{{../this._id}}">Return</button>
+                                            {{/if}}
+                                        {{/each}}
+                                    {{/if}}
+                                    
+                                    {{#if (eq this.status "processing")}}
+                                        <button class="btn btn-sm btn-danger mb-1" data-bs-toggle="modal" data-bs-target="#cancelModal{{this._id}}">Cancel</button>
+                                    {{/if}}
                                 </td>
                             </tr>
                             {{/each}}
@@ -187,36 +283,33 @@
 </main>
 
 
-
-
-    <!-- Edit Profile Modal -->
-    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editProfileForm">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" value="{{user.username}}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" value="{{user.email}}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="phone" value="{{user.phone}}" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+   <!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Standard form submission using POST method -->
+        <form id="editProfileForm" method="POST" action="user/editUser">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{user.username}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone" name="phone" value="{{user.phone}}" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
+
+   
 
     <!-- Order Details Modal -->
     {{#each orders}}
@@ -228,17 +321,30 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{!-- <p><strong>Order Date:</strong> {{formatDate this.datePlaced}}</p> --}}
-                    <p><strong>Total Amount:</strong> ${{this.totalAmount}}</p>
-                    <p><strong>Status:</strong> {{this.status}}</p>
-                    <p><strong>Payment Method:</strong> {{this.paymentMethod}}</p>
-                    {{!-- <p><strong>Expected Delivery:</strong> {{formatDate this.deliveryExpectedDate}}</p> --}}
-                    <h6>Items:</h6>
-                    <ul>
-                        {{#each this.items}}
-                        <li>{{this.product.name}} - Quantity: {{this.quantity}} - Price: ${{this.price}}</li>
-                        {{/each}}
-                    </ul>
+                    <div id="invoice">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h1>Notch Luxe Bags</h1>
+                            <p style="color: #8a8a8a; font-style: italic;">Luxury at your fingertips</p>
+                        </div>
+                        <h2>Order Confirmation</h2>
+                        <p style="color: #27ae60; font-weight: bold;">Thank you for your order!</p>
+                        <h3>Order Details:</h3>
+                        <ul>
+                            {{#each this.items}}
+                            <li>
+                                <span style="color: #2980b9; font-weight: bold;">Product:</span> {{this.product.name}} | 
+                                <span style="color: #2980b9; font-weight: bold;">Quantity:</span> {{this.quantity}} | 
+                                <span style="color: #2980b9; font-weight: bold;">Price:</span> ${{this.price}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                        <p class="total-amount">Total Amount: ${{this.totalAmount}}</p>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <p style="color: #7f8c8d;">Thank you for choosing Notch Luxe Bags!</p>
+                            <p style="color: #7f8c8d;">For any queries, please contact our customer support.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="generatePDF('{{this._id}}')">Download PDF</button>
                 </div>
             </div>
         </div>
@@ -247,7 +353,7 @@
 
     <!-- Return Modal -->
     {{#each orders}}
-    {{!-- {{#if (eq this.status "delivered")}} --}}
+    {{#if (eq this.status "delivered")}}
     <div class="modal fade" id="returnModal{{this._id}}" tabindex="-1" aria-labelledby="returnModalLabel{{this._id}}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -257,7 +363,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Are you sure you want to return this order?</p>
-                    <form id="returnForm{{this._id}}">
+                    <form id="returnForm{{this._id}}" onsubmit="submitReturnRequest(event, '{{this._id}}', '{{this.items.[0].product._id}}')">
                         <div class="mb-3">
                             <label for="returnReason{{this._id}}" class="form-label">Reason for Return</label>
                             <textarea class="form-control" id="returnReason{{this._id}}" rows="3" required></textarea>
@@ -268,43 +374,174 @@
             </div>
         </div>
     </div>
-    {{!-- {{/if}} --}}
+    {{/if}}
+    {{/each}}
+
+    <!-- Cancel Order Modal -->
+    {{#each orders}}
+    {{#if (eq this.status "processing")}}
+    <div class="modal fade" id="cancelModal{{this._id}}" tabindex="-1" aria-labelledby="cancelModalLabel{{this._id}}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelModalLabel{{this._id}}">Cancel Order: {{this.orderID}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to cancel this order?</p>
+                    <form id="cancelForm{{this._id}}" onsubmit="submitCancelRequest(event, '{{this._id}}')">
+                        <div class="mb-3">
+                            <label for="cancelReason{{this._id}}" class="form-label">Reason for Cancellation</label>
+                            <textarea class="form-control" id="cancelReason{{this._id}}" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
     {{/each}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        function submitReturnRequest(event, orderId, productId) {
+            event.preventDefault();
+            const returnReason = document.getElementById(`returnReason${orderId}`).value;
+
+            fetch(`/returns`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    orderId: orderId, 
+                    productId: productId, 
+                    returnReason: returnReason
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Return request submitted successfully!');
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error submitting return request.');
+            });
+        }
+
+        function submitCancelRequest(event, orderId) {
+            event.preventDefault();
+            const cancelReason = document.getElementById(`cancelReason${orderId}`).value;
+
+            fetch(`/cancel-order`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    orderId: orderId,
+                    cancelReason: cancelReason
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Order cancelled successfully!');
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error cancelling order.');
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const editProfileForm = document.getElementById('editProfileForm');
             editProfileForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // Here you would typically send an AJAX request to update the user profile
-                console.log('Update profile:', {
+                const formData = {
                     username: document.getElementById('username').value,
                     email: document.getElementById('email').value,
                     phone: document.getElementById('phone').value
+                };
+
+                fetch('/update-profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Profile updated successfully!');
+                        location.reload();
+                    } else {
+                        alert('Error updating profile: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    alert('Error updating profile.');
                 });
-                // After successful update, you might want to show a success message or close the modal
-                alert('Profile updated successfully!');
-                document.getElementById('editProfileModal').classList.remove('show');
-                document.body.classList.remove('modal-open');
-                document.querySelector('.modal-backdrop').remove();
             });
 
-            // Add event listeners for return forms
-            document.querySelectorAll('form[id^="returnForm"]').forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const orderId = this.id.replace('returnForm', '');
-                    const reason = document.getElementById(`returnReason${orderId}`).value;
-                    console.log('Return request for order:', orderId, 'Reason:', reason);
-                    // Here you would typically send an AJAX request to process the return
-                    alert('Return request submitted successfully!');
-                    document.getElementById(`returnModal${orderId}`).classList.remove('show');
-                    document.body.classList.remove('modal-open');
-                    document.querySelector('.modal-backdrop').remove();
+            const addFundsForm = document.getElementById('addFundsForm');
+            addFundsForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = document.getElementById('amount').value;
+
+                fetch('/add-funds', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount: parseFloat(amount) })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Funds added successfully!');
+                        location.reload();
+                    } else {
+                        alert('Error adding funds: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    alert('Error adding funds.');
                 });
             });
         });
+
+        
+        function generatePDF(orderId) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            const invoiceElement = document.querySelector(`#orderDetailsModal${orderId} #invoice`);
+            
+            doc.html(invoiceElement, {
+                callback: function (doc) {
+                    doc.save(`invoice-${orderId}.pdf`);
+                },
+                x: 10,
+                y: 10,
+                width: 180,
+                windowWidth: 650
+            });
+        }
+
     </script>
 </body>
 </html>

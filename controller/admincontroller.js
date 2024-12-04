@@ -1,8 +1,9 @@
 const { Banner, MidBanner, BotBanner, SaleBanner } = require('../models/banner');
-
+const Order = require('../models/Order')
 const {Product,Brand} = require('../models/productSchema');
 const { User, DeletedUser } = require('../models/userschema');
 const Coupon=require("../models/coupon")
+const logger = require('../utils/logger');
 
 const loginGet = (req, res) => {
     res.render('admin/adminLogin');
@@ -80,7 +81,7 @@ const products = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
-const bannershow = async (req, res) => {
+const banner = async (req, res) => {
     try {
         const topBanners = await Banner.find().lean();
         const midBanners = await MidBanner.find().lean();
@@ -89,32 +90,25 @@ const bannershow = async (req, res) => {
 
         console.log({ topBanners, midBanners, botBanners, saleBanners }); // Log fetched data
 
-        res.render('admin/bannershow', { topBanners, midBanners, botBanners, saleBanners });
+        res.render('admin/banners', { topBanners, midBanners, botBanners, saleBanners });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
     }
 };
-const banner = (req, res) => {
-    // Fetch and display banners
-    res.render('admin/banners');
-};
+
 
 // Handle add banner
 const addBanner = async (req, res) => {
-    const { maintext, bgtext, decollection } = req.body;
+    const { maintext, bgtext, description } = req.body; // Extract 'description'
     const bgimage = req.files['bgimage'][0].filename;
-    const leftimg = req.files['leftimg'][0].filename;
-    const rightimg = req.files['rightimg'][0].filename;
-
+    
     try {
         const newBanner = new Banner({
             bgimage,
             maintext,
-            leftimg,
-            rightimg,
             bgtext,
-            decollection
+            description // Assign 'description'
         });
         await newBanner.save();
         res.render('admin/banners', { message: 'Banner added successfully' });
@@ -124,17 +118,15 @@ const addBanner = async (req, res) => {
     }
 };
 
+
 // Handle add mid banner
 const addMidBanner = async (req, res) => {
     const image1 = req.files['image1'][0].filename;
-    const image2 = req.files['image2'][0].filename;
-    const image3 = req.files['image3'][0].filename;
+    
 
     try {
         const newMidBanner = new MidBanner({
-            image1,
-            image2,
-            image3
+            image1
         });
         await newMidBanner.save();
         res.render('admin/banners', { message: 'Mid banner added successfully' });
@@ -146,25 +138,34 @@ const addMidBanner = async (req, res) => {
 
 // Handle add bottom banner
 const addBotBanner = async (req, res) => {
-    const { title, price, dscrptext } = req.body;
+    const { title, dscrptext } = req.body; // Removed 'price'
+    
+    // Ensure that the file was uploaded
+    if (!req.files || !req.files['bkimage'] || req.files['bkimage'].length === 0) {
+        return res.status(400).render('admin/banners', { error: 'Background image is required.' });
+    }
+
     const bkimage = req.files['bkimage'][0].filename;
-    const imglink1 = req.files['imglink1'][0].filename;
-    const imglink2 = req.files['imglink2'][0].filename;
 
     try {
         const newBotBanner = new BotBanner({
             bkimage,
             title,
-            price,
             dscrptext,
-            imglink1,
-            imglink2
         });
         await newBotBanner.save();
         res.render('admin/banners', { message: 'Bottom banner added successfully' });
     } catch (error) {
-        console.error(error);
-        res.status(500).render('admin/banners', { error: 'Server error' });
+        console.error('Error adding Bottom Banner:', error);
+
+        // Handle Mongoose validation errors
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+            return res.status(400).render('admin/banners', { error: messages.join('. ') });
+        }
+
+        // Handle other errors
+        res.status(500).render('admin/banners', { error: 'Server error. Please try again later.' });
     }
 };
 
@@ -374,6 +375,140 @@ const showCoupon=async(req,res)=>{
     };  
 }
 
+const order=async(req,res)=>{
+    try{
+        const userOrders=await Order.find().populate("userId").exec()
+
+        res.render("admin/order",{userOrders})
+    }
+    catch (error) {
+        console.error(error);
+        res.render("admin/order", { errorMessage: "Server error" }); // Adjusted error page rendering path
+    
+};  
+}
+
+const updateOrderStatus=async (req, res) => {
+    console.log("entered")
+    const { orderId, status } = req.body;
+    console.log("orderId:",orderId)
+
+    try {
+        // Update the order status in the database
+        const order = await Order.findByIdAndUpdate(orderId, { status: status }, { new: true });
+
+        if (order) {
+            return res.status(200).json({ success: true, message: 'Order status updated successfully.' });
+        } else {
+            return res.status(404).json({ success: false, message: 'Order not found.' });
+        }
+    } catch (error) {
+        console.error('Error updating order status:', error);
+        return res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+ 
+const returns = async (req, res) => {
+    try {
+        // Find orders where at least one item has the isReturn status as 'processing', 'refunded', or 'requested'
+        const orders = await Order.find({
+            "items.isReturn": { $in: ['processing', 'refunded', 'requested'] }
+        }).lean();
+
+        // Pass the orders to the Handlebars template
+        res.render("admin/return", { orders });
+    } catch (error) {
+        console.error("Error fetching return orders:", error);
+        res.status(500).send("Internal Server Error");
+    }
+};
+
+
+const updateReturnStatus = async (req, res) => {
+    try {
+        const { orderId, status } = req.body;
+
+        // Update the order status
+        const order = await Order.findById(orderId).populate('userId');
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        // Check if the status is refunded
+        if (status === 'refunded') {
+            // Update isReturn to 'refunded' in the order
+            order.items.forEach(item => {
+                item.isReturn = 'refunded';
+            });
+            await order.save();
+
+            // Find the user associated with the order and update their wallet
+            const user = order.userId;
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+            // Add the refund amount to the user's wallet
+            const refundAmount = order.totalAmount; // Or specify the refund amount based on your logic
+            user.wallet += refundAmount;
+            await user.save();
+        }
+
+        // Update the order status
+        order.status = status;
+        await order.save();
+
+        return res.status(200).json({ message: 'Order status updated and refund processed successfully' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'An error occurred while updating return status' });
+    }
+};
+const getDashboardData = async (req, res) => {
+    try {
+      // Fetch total orders
+      const totalOrders = await Order.countDocuments();
+      
+      // Fetch total revenue
+      const totalRevenue = await Order.aggregate([
+        { $group: { _id: null, totalRevenue: { $sum: "$totalPrice" } } }
+      ]);
+  
+      // Fetch the number of customers
+      const totalCustomers = await User.countDocuments({ isActive: true });
+      
+      // Fetch best-selling products (from the Order model)
+      const bestSellingProducts = await Order.aggregate([
+        { $unwind: "$items" },
+        { $group: { _id: "$items.product", totalSold: { $sum: "$items.quantity" } } },
+        { $sort: { totalSold: -1 } },
+        { $limit: 5 }  // Display top 5 products
+      ]);
+  
+      // Fetch product names for best-selling products
+      const bestSellingProductsWithNames = await Promise.all(
+        bestSellingProducts.map(async (product) => {
+          const productDetails = await Product.findById(product._id).select('name');
+          return {
+            ...product,
+            name: productDetails ? productDetails.name : 'Unknown Product',
+          };
+        })
+      );
+  
+      // Render the dashboard view with the fetched data
+      res.render('admin/dashboard', {
+        totalOrders,
+        totalRevenue: totalRevenue[0]?.totalRevenue || 0,
+        totalCustomers,
+        bestSellingProducts: bestSellingProductsWithNames
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error fetching dashboard data');
+    }
+  };
+
 module.exports = {
     loginGet,
     loginPost,
@@ -388,7 +523,6 @@ module.exports = {
     addMidBanner,
     addBotBanner,
     addSaleBanner,
-    bannershow,
     deleteUser,
     unblockUser,
     blockProduct,
@@ -398,5 +532,9 @@ module.exports = {
     searching,
     addCoupon,
     showCoupon,
-
+    order,
+    updateOrderStatus,
+    returns,
+    updateReturnStatus,
+    getDashboardData
 };

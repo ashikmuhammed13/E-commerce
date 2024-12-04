@@ -1,435 +1,472 @@
-{{!-- {{>preload}}
-{{>header}}
-<main>
- <section class="slider-area pos-relative">
-    <div class="slider-active">
-        {{#each banners}}
-        <div class="single-slider slide-1-style slide-height d-flex align-items-center" style="background-image: url('/uploads/{{this.bgimage}}');">
-            <div class="shape-title bounce-animate">
-                <h2>{{this.bgtext}}</h2>
-            </div>
-            <div class="shape-icon bounce-animate">
-                <img src="img/slider/shape-icon.png" alt="">
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-7">
-                        <div class="slide-content">
-                            <span data-animation="fadeInRight" data-delay=".2s">{{this.collection}}</span>
-                            <h1 data-animation="fadeInUp" data-delay=".5s">{{this.maintext}}</h1>
-                            
-                        </div>
-                    </div>
-                    <div class="col-xl-5">
-                        <div class="slide-shape1" data-animation="bounceInRight" data-delay=".9s">
-                            <img src="/uploads/{{this.leftimg}}" alt="">
-                        </div>
-                        <div class="slide-shape2" data-animation="bounceInRight" data-delay="1.2s">
-                            <img src="/uploads/{{this.rightimg}}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-</section>
-    <section class="banner-area pt-30 pl-15 pr-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="banner mb-30">
-                        <a href="shop.html"><img src="img/banner/banner-1/banner1.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="banner mb-30">
-                        <a href="shop.html"><img src="img/banner/banner-1/banner2.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="banner mb-30">
-                        <a href="shop.html"><img src="img/banner/banner-1/banner3.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="product-area box-90 pt-70 pb-40">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-5 col-lg-12">
-                    <div class="area-title mb-50">
-                        <h2>Brand New Products</h2>
-                        <p>Browse the huge variety of our products</p>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-12">
-                    <div class="product-tab mb-40">
-                        <ul class="nav product-nav  justify-content-xl-end" id="myTab1" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">table lamp</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                    aria-controls="profile" aria-selected="false">furniture</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                    aria-controls="contact" aria-selected="false">chair</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab1" data-toggle="tab" href="#contact9" role="tab"
-                                    aria-controls="contact" aria-selected="false">Clock</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {{>brandnew}}
-        </div>
-    </section>
-    <section class="top-seller-area box-90">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-5 col-lg-8 col-md-7">
-                    <div class="area-title mb-50">
-                        <h2>Top Sellers</h2>
-                        <p>Browse the huge variety of our products</p>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-4 col-md-5">
-                    <div class="vue-btn text-left text-md-right mb-50">
-                        <a href="shop.html" class="btn theme-btn">Collection</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-5 col-lg-5">
-                    <div class="top-seller mb-50">
-                        <img src="img/banner/top-seller/banner1.jpg" alt="">
-                        <div class="seller-box text-center">
-                            <div class="top-seller-content text-left">
-                                <h2><a href="shop.html">Minimal Home Decor</a></h2>
-                                <div class="pro-price mb-25">
-                                    <span>$119.00 USD</span>
-                                    <span class="old-price">$230.00 USD</span>
-                                </div>
-                                <div class="top-seller-btn">
-                                    <a href="shop.html" class="btn theme-btn">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-7">
-                    <div class="top-seller text-right mb-50">
-                        <img src="img/banner/top-seller/banner2.jpg" alt="">
-                        <div class="sellet-2-content">
-                            <h2><a href="shop.html">Xcross Comoer Furniture</a></h2>
-                            <div class="pro-price mb-25">
-                                <span>$119.00 USD</span>
-                                <span class="old-price">$230.00 USD</span>
-                            </div>
-                            <div class="top-seller-btn">
-                                <a href="shop.html" class="btn theme-btn-2 mr-20">view details</a>
-                                <a href="#" class="shop-btn"><i class="flaticon-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="product-area box-90 pt-45 pb-40">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-5 col-lg-12">
-                    <div class="area-title mb-50">
-                        <h2>Best Sell Products</h2>
-                        <p>Browse the huge variety of our products</p>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-12">
-                    <div class="product-tab mb-40">
-                        <ul class="nav product-nav justify-content-xl-end" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab1" data-toggle="tab" href="#home1" role="tab"
-                                    aria-controls="home" aria-selected="true">table lamp</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab1" data-toggle="tab" href="#profile1" role="tab"
-                                    aria-controls="profile" aria-selected="false">furniture</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab6" data-toggle="tab" href="#contact1" role="tab"
-                                    aria-controls="contact" aria-selected="false">chair</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#contact2" role="tab"
-                                    aria-controls="contact" aria-selected="false">Clock</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {{>bestsell}}
-        </div>
-    </section>
-    <section class="upcoming-product-area pos-relative box-90 pt-120 pb-120" data-background="img/bg/bg.jpg">
-        <div class="upc-shape d-none d-xl-block">
-            <div class="bakix-marker map-c1">
-                <div class="bakix-map-icon">
-                    <i class="flaticon-add"></i>
-                </div>
-                <div class="bakix-map-address">
-                    <p>Lodge Flush Mount</p>
-                </div>
-            </div>
-            <div class="bakix-marker map-c2">
-                <div class="bakix-map-icon">
-                    <i class="flaticon-add"></i>
-                </div>
-                <div class="bakix-map-address">
-                    <p>Lodge Flush Mount</p>
-                </div>
-            </div>
-            <div class="bakix-marker map-c3">
-                <div class="bakix-map-address">
-                    <p>Lodge Flush Mount</p>
-                </div>
-                <div class="bakix-map-icon">
-                    <i class="flaticon-add"></i>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-6 offset-xl-6">
-                    <div class="upcoming-product">
-                        <div class="upc-price">$500.00</div>
-                        <h1><a href="/productinfo">Lodge Flush Mount</a></h1>
-                        <ul class="upc-pro-info fix">
-                            <li class="d-flex">
-                                <i class="flaticon-layers"></i>
-                                <div class="upc-info">
-                                    <h4>Origin From</h4>
-                                    <span>Sweden</span>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <i class="flaticon-layers"></i>
-                                <div class="upc-info">
-                                    <h4>Material</h4>
-                                    <span>Aluminum</span>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <i class="flaticon-layers"></i>
-                                <div class="upc-info">
-                                    <h4>Designer</h4>
-                                    <span>SayyamCode</span>
-                                </div>
-                            </li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            nulla.</p>
-                        <div class="upc-btn">
-                            <a class="btn theme-btn" href="shop.html" data-animation="fadeInLeft" data-delay=".7s">shop
-                                now</a>
-                            <a class="btn white-btn" href="shop.html" data-animation="fadeInRight"
-                                data-delay=".9s">Details</a>
-                        </div>
-                        <div class="event-timer">
-                            <div class="mt-40" data-countdown="2019/04/01"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-{{>footer}}
-{{>search}} --}}
-{{!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE - Elegant Living, Redefined</title>
+    <title>LUXE - Elegant Luxury Bags</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f8f5f2;
-            color: #333;
-        }
-        .navbar {
-            background-color: #1c1c1c;
-            padding: 15px 0;
-            position: relative;
-        }
-        .navbar::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #c0a080, transparent);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .logo a {
-            font-family: 'Playfair Display', serif;
-            color: #c0a080;
-            font-size: 32px;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links li {
-            margin: 0 20px;
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #c0a080;
-        }
-        .nav-icons a {
-            color: #c0a080;
-            font-size: 18px;
-            margin-left: 25px;
-            transition: color 0.3s ease;
-        }
-        .nav-icons a:hover {
-            color: #fff;
-        }
-        .cart-icon {
-            position: relative;
-        }
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: #c0a080;
-            color: #1c1c1c;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 10px;
-            font-weight: 600;
-        }
-        .product-slider .pro-item {
-            margin: 0 15px;
-        }
-        .product-wrapper {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .product-wrapper:hover {
-            transform: translateY(-5px);
-        }
-        .product-img {
-            position: relative;
-            overflow: hidden;
-        }
-        .product-img img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .product-img:hover img {
-            transform: scale(1.05);
-        }
-        .product-action {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            right: 0;
-            background-color: rgba(192, 160, 128, 0.9);
-            padding: 10px 0;
-            transition: bottom 0.3s ease;
-        }
-        .product-img:hover .product-action {
-            bottom: 0;
-        }
-        .product-action a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 18px;
-        }
-        .product-content {
-            padding: 20px;
-        }
-        .pro-cat {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 10px;
-        }
-        .product-content h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .product-content h4 a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .product-content h4 a:hover {
-            color: #c0a080;
-        }
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .pro-price {
-            font-weight: 600;
-            color: #c0a080;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #888;
-            margin-left: 10px;
-        }
-        .product-wishlist a {
-            color: #c0a080;
-            font-size: 18px;
-        }
-    </style>
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f5f2;
+    color: #333;
+    padding-top: 70px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #1c1c1c;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c0a080, transparent);
+}
+
+.logo a {
+    font-family: 'Playfair Display', serif;
+    color: #c0a080;
+    font-size: 32px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #c0a080;
+}
+
+.nav-icons a {
+    color: #c0a080;
+    font-size: 18px;
+    margin-left: 25px;
+    transition: color 0.3s ease;
+}
+
+.nav-icons a:hover {
+    color: #fff;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #c0a080;
+    color: #1c1c1c;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Home Banner Carousel Styles */
+#bannerCarousel {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.carousel-inner, .carousel-item {
+    height: 100%;
+}
+
+.carousel-item {
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: left;
+    padding: 0 15px;
+}
+
+.carousel-content {
+    background-color: rgba(28, 28, 28, 0.7);
+    border: 1px solid #c0a080;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.carousel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.carousel-description {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-btn {
+    display: inline-block;
+    background-color: #c0a080;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background-color: #a3876a;
+    color: #fff;
+}
+
+.carousel-image {
+    display: none;
+}
+
+/* Product Card Styles */
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.product-card .card-img-top {
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+.product-card .card-body {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #f8f5f2;
+}
+
+.product-card .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #1c1c1c;
+}
+
+.product-card .btn {
+    background-color: #c0a080;
+    border: none;
+    color: #1c1c1c;
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+.product-card .btn:hover {
+    background-color: #1c1c1c;
+    color: #c0a080;
+}
+
+/* Section Title Styles */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1c1c1c;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: #c0a080;
+}
+
+/* Brand Logo Styles */
+.brand-logo {
+    max-width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+.brand-logo:hover {
+    filter: grayscale(0%);
+}
+
+/* Different Banner Styles */
+.different-banner {
+    background-attachment: fixed;
+    padding: 150px 0;
+}
+
+/* Background Pattern */
+.bg-pattern {
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    background-color: #f8f5f2;
+}
+
+/* Chat Widget Styles */
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.chat-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1c1c1c;
+    border: 2px solid #c0a080;
+    color: #c0a080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    padding: 0;
+    outline: none;
+}
+
+.chat-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    border: 1px solid #c0a080;
+    z-index: 9999;
+    display: none;
+}
+
+.chat-header {
+    background: #1c1c1c;
+    color: #c0a080;
+    padding: 20px;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 1px solid #c0a080;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.chat-messages {
+    height: 380px;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f5f2;
+}
+
+.message {
+    margin-bottom: 15px;
+    max-width: 80%;
+}
+
+.bot-message {
+    background: #1c1c1c;
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 15px 15px 15px 0;
+    float: left;
+    clear: both;
+}
+
+.user-message {
+    background: #c0a080;
+    color: #1c1c1c;
+    padding: 12px 15px;
+    border-radius: 15px 15px 0 15px;
+    float: right;
+    clear: both;
+}
+
+.chat-input {
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #c0a080;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #c0a080;
+    border-radius: 25px;
+    margin-right: 10px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.chat-input button {
+    background: #c0a080;
+    color: #1c1c1c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+    background: #1c1c1c;
+    color: #c0a080;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .logo a {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-icons {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .nav-icons a {
+        margin-left: 0;
+    }
+
+    #bannerCarousel {
+        height: 70vh;
+    }
+
+    .carousel-title {
+        font-size: 2rem;
+    }
+
+    .carousel-description {
+        font-size: 0.9rem;
+    }
+
+    .product-card .card-img-top {
+        height: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel-caption {
+        text-align: left;
+        left: 10%;
+        right: 10%;
+    }
+
+    .carousel-content {
+        margin: 0;
+    }
+
+    .carousel-title {
+        font-size: 3rem;
+    }
+
+    .carousel-description {
+        font-size: 1.2rem;
+    }
+
+    .carousel-image {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 10%;
+        transform: translateY(-50%);
+        max-height: 70vh;
+        object-fit: contain;
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-title {
+        font-size: 3.5rem;
+    }
+}
+</style>
 </head>
-<body>
+<body class="bg-pattern">
     <nav class="navbar">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="container">
             <div class="logo">
                 <a href="/">LUXE</a>
             </div>
@@ -450,248 +487,19 @@
             </div>
         </div>
     </nav>
-
-    <main>
-        <section class="hero" style="background-image: url('path-to-your-hero-image.jpg'); background-size: cover; background-position: center; height: 80vh; display: flex; align-items: center; position: relative;">
-            <div class="container">
-                <div style="max-width: 600px; position: relative; z-index: 2;">
-                    <h1 style="font-family: 'Playfair Display', serif; font-size: 48px; color: #fff; margin-bottom: 20px;">Elegant Living, Redefined</h1>
-                    <p style="font-size: 18px; color: #fff; margin-bottom: 30px;">Discover our curated collection of luxury home decor and furniture.</p>
-                    <a href="/shop" style="display: inline-block; background-color: #c0a080; color: #fff; padding: 12px 30px; text-decoration: none; font-weight: 600; transition: background-color 0.3s ease;">Shop Now</a>
-                </div>
-            </div>
-            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.4);"></div>
-        </section>
-
-        <section class="product-area" style="padding: 80px 0; background-color: #fff;">
-            <div class="container">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; text-align: center; margin-bottom: 50px;">Our Products</h2>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="product-tab-content">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <div class="product-slider owl-carousel">
-                                        {{#each firstPartProducts}}
-                                        <div class="pro-item">
-                                            <div class="product-wrapper mb-50">
-                                                <div class="product-img mb-25">
-                                                    <a href="/productinfo?q={{this._id}}">
-                                                        <img src="{{this.imageUrls.[0]}}" alt="">
-                                                        <img class="secondary-img" src="{{this.imageUrls.[2]}}" alt="">
-                                                    </a>
-                                                    <div class="product-action text-center">
-                                                        <a href="#" title="Shopping Cart">
-                                                            <i class="flaticon-shopping-cart"></i>
-                                                        </a>
-                                                        <a href="#" title="Quick View">
-                                                            <i class="flaticon-eye"></i>
-                                                        </a>
-                                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-                                                            <i class="flaticon-compare"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="pro-cat mb-10">
-                                                        <a href="shop.html">{{this.brand.name}}</a>
-                                                    </div>
-                                                    <h4>
-                                                        <a href="/productdetail/{{this._id}}">{{this.name}}</a>
-                                                    </h4>
-                                                    <div class="product-meta">
-                                                        <div class="pro-price">
-                                                            <span>₹{{this.price}}</span>
-                                                            <span class="old-price">₹{{this.oldprice}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-wishlist">
-                                                        <a href="#"><i class="far fa-heart" title="Wishlist"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{/each}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="newsletter" style="background-color: #1c1c1c; color: #fff; padding: 60px 0;">
-            <div class="container" style="text-align: center;">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px;">Join Our Newsletter</h2>
-                <p style="font-size: 18px; margin-bottom: 30px;">Stay updated with our latest collections and exclusive offers.</p>
-                <form style="max-width: 500px; margin: 0 auto; display: flex;">
-                    <input type="email" placeholder="Enter your email" style="flex-grow: 1; padding: 12px; border: none; font-size: 16px;">
-                    <button type="submit" style="background-color: #c0a080; color: #fff; border: none; padding: 12px 30px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Subscribe</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer style="background-color: #1c1c1c; color: #fff; padding: 60px 0;">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                <div style="width: 25%; margin-bottom: 30px;">
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">LUXE</h3>
-                    <p style="font-size: 14px; line-height: 1.6;">Elevating your living spaces with timeless elegance and unparalleled quality.</p>
-                </div>
-                <div style="width: 20%; margin-bottom: 30px;">
-                    <h4 style="font-size: 18px; margin-bottom: 20px;">Quick Links</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 10px;"><a href="#" style="color: #fff; text-decoration: none; font-size: 14px;">About Us</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style="color: #fff; text-decoration: none; font-size: 14px;">Contact</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#" style="color: #fff; text-decoration: none; font-size: 14px;">FAQs</a></li>
-                    </ul>
-                </div>
-                <!-- Add more footer columns as needed -->
-            </div>
-            <div style="border-top: 1px solid #333; padding-top: 30px; margin-top: 30px; text-align: center; font-size: 14px;">
-                &copy; 2024 LUXE. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".product-slider").owlCarousel({
-                loop: true,
-                margin: 30,
-                nav: true,
-                dots: false,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:4
-                    }
-                }
-            });
-        });
-    </script>
-</body>
-</html> --}}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxurious Bag Store</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-          
-        }
-        .navbar {
-            background-color: #1c1c1c;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1030;
-        }
-        .banner-slide {
-            height: 70vh; /* Reduced banner size */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .banner-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            z-index: 2;
-        }
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1;
-        }
-        .bg-text {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 4rem; /* Reduced size */
-            font-weight: bold;
-            color: rgba(255,255,255,0.2);
-            z-index: 2;
-        }
-        .product-card {
-            transition: transform 0.3s;
-            height: 100%; /* Ensure consistent height */
-        }
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-        .product-card .card-img-top {
-            height: 300px; /* Fixed height for product images */
-            object-fit: cover;
-        }
-        .different-banner {
-            background-size: cover;
-            background-position: center;
-            padding: 100px 0;
-            position: relative;
-            color: white;
-        }
-        .different-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.6);
-        }
-        .brand-section {
-            padding: 50px 0;
-            background-color: #f8f9fa;
-        }
-        .brand-logo {
-            max-width: 100px;
-            height: 100px; /* Fixed height for brand logos */
-            object-fit: contain;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    {{>header}}
-
-    <!-- Banner Carousel -->
-    <div id="bannerCarousel" class="carousel slide">
+    {{!-- home banner  --}}
+ <section id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             {{#each banners}}
-            <div class="carousel-item {{#if @first}}active{{/if}}">
-                <div class="banner-slide" style="background-image: url('/uploads/{{this.bgimage}}');">
-                    <div class="banner-overlay"></div>
-                    <div class="banner-content">
-                        <h1 class="display-4 mb-4">{{this.maintext}}</h1>
-                        <p class="lead mb-4">{{this.description}}</p>
-                        <button class="btn btn-light btn-lg">Shop Now</button>
+            <div class="carousel-item {{#if @first}}active{{/if}}" style="background-image: url('/uploads/{{this.bgimage}}');">
+                <div class="carousel-caption">
+                    <div class="carousel-content">
+                        <h1 class="carousel-title">{{this.maintext}}</h1>
+                        <p class="carousel-description">{{this.description}}</p>
+                        <a href="/shop" class="carousel-btn">Shop Now</a>
                     </div>
-                    <div class="bg-text">{{this.bgtext}}</div>
                 </div>
+                <img src="/uploads/{{this.bgimage}}" alt="Luxury Bag" class="carousel-image">
             </div>
             {{/each}}
         </div>
@@ -703,24 +511,24 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>
-    <br><br>
-<h2 class="text-center mb-5">Our Signature Collection</h2>
-    <!-- Product Cards -->
-<section class="py-5 bg-light">
+    </section>
+
+
+           
+    <!-- Signature Collection -->
+    <section class="py-5">
         <div class="container">
-            
-            <div class="row g-6">
+            <h2 class="section-title">Our Signature Collection</h2>
+            <div class="row g-4">
                 {{#each firstPartProducts}}
                 <div class="col-6 col-md-3">
                     <div class="card product-card h-100">
-                        <a href="/productdetail/{{this._id}}">
+                        <a href="/productinfo?q={{this._id}}">
                             <img src="{{this.imageUrls.[0]}}" class="card-img-top" alt="{{this.name}}">
                         </a>
-                        <div class="card-body d-flex flex-column">
+                        <div class="card-body">
                             <h5 class="card-title">{{this.name}}</h5>
-                            {{!-- <p class="card-text mt-auto">₹{{this.price.toLocaleString()}}</p> --}}
-                            <a href="/productinfo?q={{this._id}}" class="btn btn-dark mt-2">Add to Cart</a>
+                            <a href="/cart?q={{this._id}}" class="btn mt-3">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -730,27 +538,26 @@
     </section>
 
     <!-- Different Design Banner -->
-  <section class="different-banner" style="background-image: url('https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');">
-        <div class="container position-relative">
+    <section class="different-banner" style="background-image: url('https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');">
+        <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h2 class="display-4 mb-4">Luxury Redefined</h2>
+                <div class="col-md-8 text-center text-white">
+                    <h2 class="display-4 mb-4" style="font-family: 'Playfair Display', serif;">Luxury Redefined</h2>
                     <p class="lead mb-4">Experience the epitome of elegance with our exclusive collections.</p>
-                    <button class="btn btn-light btn-lg">View Lookbook</button>
+                    <button class="btn btn-outline-light btn-lg" style="border-color: #c0a080; color: #c0a080;">View Lookbook</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Brand Section -->
-    <section class="brand-section">
+    <section class="py-4 bg-white">
         <div class="container">
-            <h2 class="text-center mb-5">Our Brands</h2>
+            <h2 class="section-title">Our Luxury Brands</h2>
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center">
                 {{#each brands}}
                 <div class="col text-center">
-                    <img src="/uploads/{{this.logo}}" alt="{{this.name}}" class="brand-logo img-fluid">
-                    <p class="mt-2">{{this.name}}</p>
+                    <img src="/uploads/{{this.image1}}" alt="{{this.image1}}" class="brand-logo img-fluid">
                 </div>
                 {{/each}}
             </div>
@@ -758,21 +565,19 @@
     </section>
 
     <!-- Featured Products -->
-    <h2 class="text-center mb-5">Featured Products</h2>
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-pattern">
         <div class="container">
-            
-            <div class="row g-6">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="row g-4">
                 {{#each remainingProducts}}
                 <div class="col-6 col-md-3">
                     <div class="card product-card h-100">
-                        <a href="/productdetail/{{this._id}}">
+                        <a href="/productinfo?q={{this._id}}">
                             <img src="{{this.imageUrls.[0]}}" class="card-img-top" alt="{{this.name}}">
                         </a>
-                        <div class="card-body d-flex flex-column">
+                        <div class="card-body">
                             <h5 class="card-title">{{this.name}}</h5>
-                            {{!-- <p class="card-text mt-auto">₹{{this.price.toLocaleString()}}</p> --}}
-                            <a href="/productinfo?q={{this._id}}" class="btn btn-dark mt-2">Add to Cart</a>
+                            <a href="/cart?q={{this._id}}" class="btn mt-3">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -781,9 +586,81 @@
         </div>
     </section>
 
-    {{>footer}}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Chat Widget -->
+<div class="chat-widget">
+    <div class="chat-button">
+        <i class="fas fa-comments"></i>
+    </div>
+    <div class="chat-container" style="display: none;">
+        <div class="chat-header">
+            <h3>Chat with Luxe</h3>
+        </div>
+        <div class="chat-messages">
+            <!-- Messages will be inserted here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userMessage" placeholder="Type your message...">
+            <button id="sendMessageBtn">Send</button>
+        </div>
+    </div>
+</div>
+{{>footer}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script><F class="
+
+
+"></F>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    const sendMessageBtn = document.getElementById('sendMessageBtn');
+    const userMessageInput = document.getElementById('userMessage');
+    const chatMessages = document.querySelector('.chat-messages');
+    const chatButton = document.querySelector('.chat-button');
+    const chatContainer = document.querySelector('.chat-container');
+
+    // Toggle chat container visibility
+    chatButton.addEventListener('click', function() {
+        chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'block' : 'none';
+    });
+
+   sendMessageBtn.addEventListener('click', function() {
+    const userMessage = userMessageInput.value.trim();
+    if (userMessage) {
+        const timestamp = new Date().toLocaleTimeString();
+
+        // Add user's message to the chat
+        const userMsgElement = document.createElement('div');
+        userMsgElement.className = 'message user-message';
+        userMsgElement.innerHTML = `<strong>You (${timestamp}):</strong> ${userMessage}`;
+        chatMessages.appendChild(userMsgElement);
+
+        // Clear input
+        userMessageInput.value = '';
+
+        // Send message to server via socket
+        socket.emit('user message', userMessage);
+    }
+});
+
+// Listen for bot responses
+socket.on('bot response', (botMessage) => {
+    const timestamp = new Date().toLocaleTimeString();
+
+    const botMsgElement = document.createElement('div');
+    botMsgElement.className = 'message bot-message';
+    botMsgElement.innerHTML = `<strong>Bot (${timestamp}):</strong> ${botMessage}`;
+    chatMessages.appendChild(botMsgElement);
+
+    // Scroll to the bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+</script>
+
+
+
 </body>
 </html>
 

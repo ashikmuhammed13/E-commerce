@@ -6,186 +6,221 @@
     <title>Luxury Product View</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f8f5f2;
-            color: #1c1c1c;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .product-area {
-            padding: 80px 0;
-        }
-        .product-grid {
-            display: flex;
-            flex-wrap: wrap;
-            margin: -15px;
-        }
-        .product-image-area, .product-info-area {
-            flex: 1;
-            padding: 15px;
-            min-width: 300px;
-        }
-        .product-image {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border: 1px solid #e0e0e0;
-        }
-        .product-thumbnails {
-            display: flex;
-            margin-top: 20px;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            margin-right: 10px;
-            border: 1px solid #e0e0e0;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
-        }
-        .thumbnail:hover {
-            border-color: #c0a080;
-        }
-        .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #1c1c1c;
-        }
-        .product-price {
-            font-size: 24px;
-            color: #c0a080;
-            margin-bottom: 20px;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #888;
-            margin-left: 10px;
-        }
-        .product-description {
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .product-meta {
-            margin-bottom: 30px;
-        }
-        .product-meta-item {
-            margin-bottom: 10px;
-        }
-        .product-meta-label {
-            font-weight: 600;
-            margin-right: 10px;
-        }
-        .add-to-cart-btn {
-            background-color: #c0a080;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .add-to-cart-btn:hover {
-            background-color: #a88b6a;
-        }
-        .quantity-input {
-            width: 60px;
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #e0e0e0;
-        }
-        .product-actions {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .action-btn {
-            background: none;
-            border: none;
-            color: #c0a080;
-            font-size: 18px;
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        .tabs {
-            margin-top: 50px;
-        }
-        .tab-buttons {
-            display: flex;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .tab-button {
-            padding: 10px 20px;
-            background: none;
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .tab-button.active {
-            color: #c0a080;
-            border-bottom: 2px solid #c0a080;
-        }
-        .tab-content {
-            padding: 30px 0;
-        }
-        .review {
-            margin-bottom: 30px;
-        }
-        .review-author {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .review-date {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .related-products {
-            margin-top: 80px;
-        }
-        .related-products-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .related-products-grid {
-            display: flex;
-            flex-wrap: wrap;
-            margin: -15px;
-        }
-        .related-product-item {
-            flex: 0 0 calc(25% - 30px);
-            margin: 15px;
-            text-align: center;
-        }
-        .related-product-image {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-        .related-product-title {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .related-product-price {
-            color: #c0a080;
-            font-weight: 600;
-        }
-    </style>
+    <style>body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f5f2;
+    color: #1c1c1c;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.product-area {
+    padding: 80px 0;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+}
+
+.product-image-area,
+.product-info-area {
+    flex: 1;
+    padding: 15px;
+    min-width: 300px;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #e0e0e0;
+}
+
+.product-thumbnails {
+    display: flex;
+    margin-top: 20px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.thumbnail:hover {
+    border-color: #c0a080;
+}
+
+.product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1c1c1c;
+}
+
+.product-price {
+    font-size: 24px;
+    color: #c0a080;
+    margin-bottom: 20px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 10px;
+}
+
+.product-description {
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.product-meta {
+    margin-bottom: 30px;
+}
+
+.product-meta-item {
+    margin-bottom: 10px;
+}
+
+.product-meta-label {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.add-to-cart-btn {
+    background-color: #c0a080;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #a88b6a;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #c0a080;
+    font-size: 18px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.tabs {
+    margin-top: 50px;
+}
+
+.tab-buttons {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.tab-button.active {
+    color: #c0a080;
+    border-bottom: 2px solid #c0a080;
+}
+
+.tab-content {
+    padding: 30px 0;
+}
+
+.review {
+    margin-bottom: 30px;
+}
+
+.review-author {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.review-date {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.related-products {
+    margin-top: 80px;
+}
+
+.related-products-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.related-products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+}
+
+.related-product-item {
+    flex: 0 0 calc(25% - 30px);
+    margin: 15px;
+    text-align: center;
+}
+
+.related-product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.related-product-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.related-product-price {
+    color: #c0a080;
+    font-weight: 600;
+}
+</style>
 </head>
 <body> 
-    {{>header}}
+    {{>allheader}}
     <main class="product-area">
         <div class="container">
             <div class="product-grid">
@@ -234,7 +269,10 @@
                             <input type="number" name="quantity" value="1" min="1" class="quantity-input">
                         </div>
                         <button type="submit" class="add-to-cart-btn">+ Add to Cart</button>
-                        <button type="button" class="action-btn" title="Add to Wishlist"><i class="fas fa-heart"></i></button>
+                        <button type="button" class="action-btn add-to-wishlist" title="Add to Wishlist" value="{{product._id}}">
+    <i class="fas fa-heart"></i>
+</button>
+
                         <button type="button" class="action-btn" title="Compare"><i class="fas fa-exchange-alt"></i></button>
                     </div>
                 </form>
@@ -295,6 +333,32 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
+
+    // Add to Wishlist JavaScript
+    document.querySelectorAll('.add-to-wishlist').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.value;
+
+            fetch('/addToWishlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: productId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    alert(data.message);
+                } else {
+                    alert('Error adding product to wishlist: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            });
+        });
+    });
+
     </script>
 </body>
 </html>

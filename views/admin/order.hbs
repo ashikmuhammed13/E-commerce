@@ -79,11 +79,16 @@
         .navbar-nav .nav-link {
             padding: 0 10px;
         }
-        .controls {
+        .card {
             background-color: #262b3c;
-            padding: 15px;
+            border: none;
             border-radius: 5px;
             margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #1e2130;
+            border-bottom: 1px solid #3a4557;
+            color: #ffffff;
         }
         .btn-primary {
             background-color: #624bff;
@@ -95,8 +100,8 @@
             border: none;
         }
         .table {
-            background-color: #262b3c;
             color: #ffffff;
+            background-color: #262b3c;
         }
         .table th {
             background-color: #1e2130;
@@ -105,31 +110,41 @@
         .table td {
             border-color: #3a4557 !important;
         }
-        .status {
+        .status-badge {
             padding: 3px 8px;
             border-radius: 12px;
             font-size: 0.8em;
+        }
+        .status-pending {
+            background-color: #ffa60033;
+            color: #ffa600;
+        }
+        .status-processing {
+            background-color: #00cfe833;
+            color: #00cfe8;
+        }
+        .status-shipped {
+            background-color: #624bff33;
+            color: #624bff;
+        }
+        .status-delivered {
+            background-color: #28c76f33;
+            color: #28c76f;
+        }
+        .status-canceled {
+            background-color: #ea545533;
+            color: #ea5455;
         }
         .status-paid {
             background-color: #28c76f33;
             color: #28c76f;
         }
-        .status-refunded {
-            background-color: #82868b33;
-            color: #82868b;
+        .controls {
+            margin-bottom: 20px;
         }
-        .status-cancel {
-            background-color: #ea545533;
-            color: #ea5455;
-        }
-        .order-status-shipped {
-            color: #00cfe8;
-        }
-        .order-status-inprogress {
-            color: #ffa600;
-        }
-        .order-status-delivered {
-            color: #28c76f;
+        .controls > * {
+            margin-right: 10px;
+            margin-bottom: 10px;
         }
         @media (max-width: 768px) {
             .sidebar {
@@ -148,17 +163,18 @@
             .sidebar-logo img {
                 max-width: 40px;
             }
-            .controls {
-                flex-direction: column;
+            .card-body {
+                padding: 0.5rem;
             }
-            .controls > * {
-                margin-bottom: 10px;
+            .table-responsive {
+                font-size: 0.875rem;
             }
+            
         }
     </style>
 </head>
 <body>
-      {{>adminSidebar}}
+    {{>adminSidebar}}
 
     <div class="main-content">
         <nav class="navbar navbar-expand-lg navbar-dark mb-4">
@@ -182,14 +198,17 @@
         </nav>
 
         <div class="container">
-            <h1>Orders</h1>
-            <div class="controls">
-                <input type="text" class="search-bar" placeholder="Search Files...">
-                <select id="statusFilter">
-                    <option value="">Status</option>
+            <h1 class="mb-4">Orders</h1>
+            <div class="controls d-flex flex-wrap align-items-center">
+                <input type="text" class="form-control search-bar" placeholder="Search Orders...">
+                <select id="statusFilter" class="form-select">
+                    <option value="">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
                     <option value="shipped">Shipped</option>
-                    <option value="inProgress">In Progress</option>
                     <option value="delivered">Delivered</option>
+                    <option value="canceled">Canceled</option>
+                    <option value="paid">Paid</option>
                 </select>
                 <button class="btn btn-primary">+ Add New Order</button>
                 <button class="btn btn-secondary">Export</button>
@@ -198,78 +217,113 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Order ID</th>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Payment Status</th>
-                            <th>Total</th>
-                            <th>Order Status</th>
-                            <th>Action</th>
+                            <th>Customer</th>
+                            <th>Total Amount</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Date Placed</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="orderTableBody">
-                        <!-- Table rows will be dynamically added here -->
+                        {{#each userOrders}}
+                        <tr>
+                            <td>{{this.orderID}}</td>
+                            <td>{{this.userId.username}}</td>
+                            <td>${{this.totalAmount}}</td>
+                            <td>{{this.paymentMethod}}</td>
+                            <td>
+                                <span class="status-badge status-{{this.status}}">
+                                    {{this.status}}
+                                </span>
+                            </td>
+                            <td>{{this.datePlaced}}</td>
+                            <td>
+    <select class="form-select form-select-sm status-select" data-order-id="{{this._id}}" 
+    {{#if (eq this.status "delivered")}}disabled {{/if}}>
+{{!-- Re-enable --}}
+        <option value="pending" {{#if (eq this.status "pending")}}selected{{/if}}>Pending</option>
+        <option value="processing" {{#if (eq this.status "processing")}}selected{{/if}}>Processing</option>
+        <option value="shipped" {{#if (eq this.status "shipped")}}selected{{/if}}>Shipped</option>
+        <option value="delivered" {{#if (eq this.status "delivered")}}selected{{/if}}>Delivered</option>
+        <option value="canceled" {{#if (eq this.status "canceled")}}selected{{/if}}>Canceled</option>
+        <option value="paid" {{#if (eq this.status "paid")}}selected{{/if}}>Paid</option>
+    </select>
+</td>
+                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Status Update Script -->
     <script>
-        const orders = [
-            { id: "#DU00017", name: "Harold Gonzalez", date: "3 Oct, 2023 10:02 PM", paymentStatus: "Paid", total: "$120.00", orderStatus: "Shipped" },
-            { id: "#DU00016", name: "Anthony Anderson", date: "19 August, 2023 6:22 PM", paymentStatus: "Paid", total: "$220.00", orderStatus: "In Progress" },
-            { id: "#DU00015", name: "Gary Faulkner", date: "8 August, 2023 8:13 AM", paymentStatus: "Paid", total: "$113.42", orderStatus: "Shipped" },
-            { id: "#DU00014", name: "Steve Nelson", date: "26 July, 2023 10:19 AM", paymentStatus: "Paid", total: "$425.31", orderStatus: "Delivered" },
-            { id: "#DU00013", name: "Kimberly Sullivan", date: "18 July, 2023 9:52 PM", paymentStatus: "Refunded", total: "$113.00", orderStatus: "Delivered" },
-            { id: "#DU00012", name: "Susan Pugh", date: "2 July, 2023 8:00 AM", paymentStatus: "Paid", total: "$831.99", orderStatus: "Delivered" },
-            { id: "#DU00011", name: "Elliott Potts", date: "23 June, 2023 8:14 PM", paymentStatus: "Cancel", total: "$113.00", orderStatus: "Delivered" },
-            { id: "#DU00010", name: "Richard Beaudry", date: "13 June, 2023 4:12 PM", paymentStatus: "Paid", total: "$582.99", orderStatus: "Delivered" },
-        ];
+    document.addEventListener('DOMContentLoaded', function() {
+        const statusSelects = document.querySelectorAll('.status-select');
 
-        function renderOrders(filteredOrders = orders) {
-            const tableBody = document.getElementById('orderTableBody');
-            tableBody.innerHTML = '';
-            filteredOrders.forEach(order => {
-                const row = `
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>${order.id}</td>
-                        <td>${order.name}</td>
-                        <td>${order.date}</td>
-                        <td><span class="status status-${order.paymentStatus.toLowerCase()}">${order.paymentStatus}</span></td>
-                        <td>${order.total}</td>
-                        <td class="order-status-${order.orderStatus.toLowerCase().replace(' ', '')}">${order.orderStatus}</td>
-                        <td><span class="action-icon">⋮</span></td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
+        statusSelects.forEach(select => {
+            // Store the current status to revert in case of error
+            select.setAttribute('data-current-status', select.value);
+
+            select.addEventListener('change', function() {
+                const orderId = this.getAttribute('data-order-id');
+                const newStatus = this.value;
+
+                // Optional: Disable the select while updating
+                this.disabled = true;
+
+                // Send AJAX request to update the order status
+                fetch('/admin/updateOrderStatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Uncomment the next line if using CSRF protection
+                        // 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ orderId: orderId, status: newStatus })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Order status updated successfully');
+
+                        // Update the status badge text and class
+                        const row = this.closest('tr');
+                        const statusBadge = row.querySelector('.status-badge');
+                        statusBadge.textContent = newStatus;
+                        // Remove existing status classes
+                        statusBadge.className = 'status-badge status-' + newStatus;
+
+                        // Update the current status data attribute
+                        this.setAttribute('data-current-status', newStatus);
+                    } else {
+                        console.error('Error updating order status:', data.message);
+                        alert('Error updating order status: ' + data.message);
+                        
+                        // Revert the select to the previous value
+                        this.value = this.getAttribute('data-current-status');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while updating the order status.');
+                    
+                    // Revert the select to the previous value
+                    this.value = this.getAttribute('data-current-status');
+                })
+                .finally(() => {
+                    // Re-enable the select
+                    this.disabled = false;
+                });
             });
-        }
-
-        document.querySelector('.search-bar').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredOrders = orders.filter(order => 
-                order.id.toLowerCase().includes(searchTerm) ||
-                order.name.toLowerCase().includes(searchTerm)
-            );
-            renderOrders(filteredOrders);
         });
-
-        document.getElementById('statusFilter').addEventListener('change', function(e) {
-            const statusFilter = e.target.value;
-            const filteredOrders = statusFilter 
-                ? orders.filter(order => order.orderStatus.toLowerCase() === statusFilter.toLowerCase())
-                : orders;
-            renderOrders(filteredOrders);
-        });
-
-        // Initial render
-        renderOrders();
-
-
+    });
     </script>
 </body>
 </html>

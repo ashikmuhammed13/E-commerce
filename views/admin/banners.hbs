@@ -222,18 +222,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Banner Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #1e2a35;
-            color: #ffffff;
+            color: #f0f2f5;
             margin: 0;
             padding: 0;
         }
 
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: all 0.3s;
+            background-color: #1e2a35;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #262b3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .search-form {
+            flex-grow: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-form .form-control {
+            background-color: #1e2a35;
+            border: none;
+            color: #ffffff;
+            padding-left: 40px;
+        }
+
+        .search-form .form-control::placeholder {
+            color: #8391a2;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8391a2;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0 10px;
+            color: #8391a2;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background-color: #624bff;
+            border-color: #624bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+
+        .btn-outline-info {
+            color: #8391a2;
+            border-color: #3a4557;
+        }
+
+        .btn-outline-info:hover {
+            color: #ffffff;
+            background-color: #1e2130;
+            border-color: #1e2130;
+        }
+
+        .btn-outline-warning {
+            color: #f6c23e;
+            border-color: #f6c23e;
+        }
+
+        .btn-outline-warning:hover {
+            color: #ffffff;
+            background-color: #f6c23e;
+            border-color: #f6c23e;
+        }
+
+        /* Table Styles */
+        .table {
+            background-color: #262b3c;
+            color: #f0f2f5;
+        }
+
+        .table th {
+            background-color: #1e2130;
+            border-color: #3a4557 !important;
+            font-weight: 600;
+        }
+
+        .table td {
+            border-color: #3a4557 !important;
+        }
+
+        .banner-preview {
+            width: 100px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #262b3c;
+            border-color: #3a4557;
+        }
+
+        .card-body {
+            color: #f0f2f5;
+        }
+
+        /* Tab Styles */
+        .nav-tabs {
+            border-bottom-color: #3a4557;
+        }
+
+        .nav-tabs .nav-link {
+            color: #8391a2;
+        }
+
+        .nav-tabs .nav-link:hover,
+        .nav-tabs .nav-link.active {
+            color: #ffffff;
+            background-color: #1e2130;
+            border-color: #3a4557 #3a4557 #1e2130;
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            background-color: #262b3c;
+            color: #f0f2f5;
+        }
+
+        .modal-header {
+            border-bottom-color: #3a4557;
+        }
+
+        .modal-footer {
+            border-top-color: #3a4557;
+        }
+
+        /* Sidebar Styles */
         .sidebar {
             width: 250px;
             background-color: #1e2a35;
@@ -274,96 +426,10 @@
             width: 20px;
         }
 
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            transition: all 0.3s;
-        }
-
-        .navbar {
-            background-color: #262b3c;
-            padding: 10px 20px;
-        }
-
-        .search-form {
-            flex-grow: 1;
-            max-width: 400px;
-        }
-
-        .search-form .form-control {
-            background-color: #1e2a35;
-            border: none;
-            color: #ffffff;
-            padding-left: 40px;
-        }
-
-        .search-form .form-control::placeholder {
-            color: #8391a2;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #8391a2;
-        }
-
-        .navbar-nav .nav-link {
-            padding: 0 10px;
-        }
-
-        .btn-primary {
-            background-color: #624bff;
-            border-color: #624bff;
-        }
-
-        .btn-outline-secondary {
-            color: #8391a2;
-            border-color: #3a4557;
-        }
-
-        .table {
-            background-color: #262b3c;
-            color: #ffffff;
-        }
-
-        .table th {
-            background-color: #1e2130;
-            border-color: #3a4557 !important;
-        }
-
-        .table td {
-            border-color: #3a4557 !important;
-        }
-
-        .status-active {
-            color: #28c76f;
-        }
-
-        .status-blocked {
-            color: #ea5455;
-        }
-
-        .pagination .page-link {
-            background-color: #262b3c;
-            border-color: #3a4557;
-            color: #8391a2;
-        }
-
-        .pagination .page-item.active .page-link {
-            background-color: #624bff;
-            border-color: #624bff;
-            color: #ffffff;
-        }
-
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .sidebar {
                 width: 60px;
-            }
-
-            .main-content {
-                margin-left: 60px;
             }
 
             .sidebar .nav-link span {
@@ -378,17 +444,63 @@
             .sidebar-logo img {
                 max-width: 40px;
             }
+
+            .main-content {
+                margin-left: 60px;
+            }
+
+            .search-form {
+                max-width: 200px;
+            }
+
+            .navbar-nav .nav-link i {
+                margin-right: 0;
+            }
         }
     </style>
 </head>
 
 <body>
-    {{> adminSidebar}}
-
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="https://via.placeholder.com/150x50?text=Logo" alt="Logo">
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a id="dashboard-link" class="nav-link" href="/admin/admin"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="products-link" class="nav-link" href="/admin/products"><i class="fas fa-shopping-cart"></i> <span>Products</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="add-product-link" class="nav-link" href="/admin/add"><i class="fas fa-plus"></i> <span>Add Product</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="orders-link" class="nav-link" href="/admin/order"><i class="fas fa-clipboard-list"></i> <span>Orders</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="returns-link" class="nav-link" href="/admin/return"><i class="fas fa-undo"></i> <span>Returns</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="coupons-link" class="nav-link" href="/admin/coupon"><i class="fas fa-ticket-alt"></i> <span>Coupons</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="banners-link" class="nav-link" href="/admin/banners"><i class="fas fa-image"></i> <span>Banners</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="users-link" class="nav-link" href="/admin/users"><i class="fas fa-users"></i> <span>Users</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="profile-link" class="nav-link" href="/admin/profile"><i class="fas fa-user"></i> <span>Admin</span></a>
+            </li>
+        </ul>
+    </div>
+    <!-- Main Content -->
     <div class="main-content">
-        <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <form class="search-form position-relative">
+                <form class="search-form">
                     <i class="fas fa-search search-icon"></i>
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 </form>
@@ -400,291 +512,282 @@
                         <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><img src="{{this.bgimg}}" class="rounded-circle" alt="User"></a>
+                        <a class="nav-link" href="#"><img src="https://via.placeholder.com/30"
+                                class="rounded-circle" alt="User"></a>
                     </li>
                 </ul>
             </div>
         </nav>
 
-        <div class="container-fluid">
-    <h1 class="mb-4">Banner Page</h1>
-    <div class="d-flex justify-content-between mb-3">
-        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#addBannerModal">+ Add Home 1st Banner</button>
-        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#add2ndBannerModal">+ Add Home 2nd Banner</button>
-        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#add3rdBannerModal">+ Add Home 3rd Banner</button>
-        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#addsaleBannerModal">+ Add <b>SALE</b> Banner</button>
-    </div>
+        <!-- Page Title -->
+        <h1 class="h3 mb-4 text-light">Banner Management</h1>
 
-    <div class="d-flex justify-content-between mb-3">
-        <h1>CLICK THE BUTTON SHOW EXISTING BANNERS</h1>
-        <button class="btn btn-outline-info" data-bs-toggle="collapse" data-bs-target="#topBannersTable">Show Home 1st Banner</button>
-        <button class="btn btn-outline-info" data-bs-toggle="collapse" data-bs-target="#midBannersTable">Show Home 2nd Banner</button>
-        <button class="btn btn-outline-info" data-bs-toggle="collapse" data-bs-target="#botBannersTable">Show Home 3rd Banner</button>
-        <button class="btn btn-outline-warning" data-bs-toggle="collapse" data-bs-target="#saleBannersTable">Show <b>SALE</b> Banner</button>
-    </div>
+        <!-- Banner Management Card with Tabs -->
+        <div class="card mb-4">
+    <div class="card-body">
+        <ul class="nav nav-tabs" id="bannerTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="main-tab" data-bs-toggle="tab" data-bs-target="#main" type="button" role="tab" aria-controls="main" aria-selected="true">Main Banner</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="middle-tab" data-bs-toggle="tab" data-bs-target="#middle" type="button" role="tab" aria-controls="middle" aria-selected="false">Middle Banner</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="bottom-tab" data-bs-toggle="tab" data-bs-target="#bottom" type="button" role="tab" aria-controls="bottom" aria-selected="false">Bottom Banner</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="sale-tab" data-bs-toggle="tab" data-bs-target="#sale" type="button" role="tab" aria-controls="sale" aria-selected="false">Sale Banner</button>
+            </li>
+        </ul>
+        
+        <div class="tab-content mt-4" id="bannerTabContent">
+            <!-- Main Banner Tab -->
+            <div class="tab-pane fade show active" id="main" role="tabpanel" aria-labelledby="main-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0">Main Banners</h5>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMainBannerModal">
+                        <i class="fas fa-plus"></i> Add Main Banner
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Preview</th>
+                                <th>Main Text</th>
+                                <th>Background Text</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each topBanners}}
+                            <tr>
+                                <td><img src="/uploads/{{this.bgimage}}" alt="Background" class="banner-preview img-fluid"></td>
+                                <td>{{this.maintext}}</td>
+                                <td>{{this.bgtext}}</td>
+                                <td>{{this.description}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <div id="topBannersTable" class="collapse">
-        <h2>Top Banners</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Main Text</th>
-                    <th>Background Text</th>
-                    <th>Collection</th>
-                    <th>Background Image</th>
-                    <th>Left Image</th>
-                    <th>Right Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each topBanners}}
-                <tr>
-                    <td>{{this.maintext}}</td>
-                    <td>{{this.bgtext}}</td>
-                    <td>{{this.decollection}}</td>
-                    <td><img src="/uploads/{{this.bgimage}}" alt="Background Image" width="50"></td>
-                    <td><img src="/uploads/{{this.leftimg}}" alt="Left Image" width="50"></td>
-                    <td><img src="/uploads/{{this.rightimg}}" alt="Right Image" width="50"></td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+            <!-- Middle Banner Tab -->
+            <div class="tab-pane fade" id="middle" role="tabpanel" aria-labelledby="middle-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0">Middle Banners</h5>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMiddleBannerModal">
+                        <i class="fas fa-plus"></i> Add Middle Banner
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Preview</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each midBanners}}
+                            <tr>
+                                <td><img src="/uploads/{{this.image1}}" alt="Middle Banner" class="banner-preview img-fluid"></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <div id="midBannersTable" class="collapse">
-        <h2>Mid Banners</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Image 1</th>
-                    <th>Image 2</th>
-                    <th>Image 3</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each midBanners}}
-                <tr>
-                    <td><img src="/uploads/{{this.image1}}" alt="Image 1" width="50"></td>
-                    <td><img src="/uploads/{{this.image2}}" alt="Image 2" width="50"></td>
-                    <td><img src="/uploads/{{this.image3}}" alt="Image 3" width="50"></td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+            <!-- Bottom Banner Tab -->
+            <div class="tab-pane fade" id="bottom" role="tabpanel" aria-labelledby="bottom-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0">Bottom Banners</h5>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBottomBannerModal">
+                        <i class="fas fa-plus"></i> Add Bottom Banner
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Background</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each botBanners}}
+                            <tr>
+                                <td><img src="/uploads/{{this.bkimage}}" alt="Bottom Banner" class="banner-preview img-fluid"></td>
+                                <td>{{this.title}}</td>
+                                <td>{{this.dscrptext}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <div id="botBannersTable" class="collapse">
-        <h2>Bottom Banners</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Background Image</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Description Text</th>
-                    <th>Image Link 1</th>
-                    <th>Image Link 2</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each botBanners}}
-                <tr>
-                    <td><img src="/uploads/{{this.bkimage}}" alt="Background Image" width="50"></td>
-                    <td>{{this.title}}</td>
-                    <td>{{this.price}}</td>
-                    <td>{{this.dscrptext}}</td>
-                    <td><img src="/uploads/{{this.imglink1}}" alt="Image Link 1" width="50"></td>
-                    <td><img src="/uploads/{{this.imglink2}}" alt="Image Link 2" width="50"></td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
-
-    <div id="saleBannersTable" class="collapse">
-        <h2>Sale Banners</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Sale Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each saleBanners}}
-                <tr>
-                    <td><img src="/uploads/{{this.saleimage}}" alt="Sale Image" width="50"></td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+            <!-- Sale Banner Tab -->
+            <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="sale-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0">Sale Banners</h5>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSaleBannerModal">
+                        <i class="fas fa-plus"></i> Add Sale Banner
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Preview</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each saleBanners}}
+                            <tr>
+                                <td><img src="/uploads/{{this.saleimage}}" alt="Sale Banner" class="banner-preview img-fluid"></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-
-</div>
-
     </div>
 
-    <!-- Add Banner Modal -->
-    <div class="modal fade" id="addBannerModal" tabindex="-1" aria-labelledby="addBannerModalLabel" aria-hidden="true">
+    <!-- Modals -->
+
+    <!-- Add Main Banner Modal -->
+    <div class="modal fade" id="addMainBannerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addBannerModalLabel">Add Banner</h5>
+                    <h5 class="modal-title">Add Main Banner</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/admin/banners" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="bgimage" class="form-label">Background Image</label>
-                            <input type="file" class="form-control" id="bgimage" name="bgimage">
-                        </div>
-                        <div class="mb-3">
-                            <label for="maintext" class="form-label">Main Text</label>
-                            <input type="text" class="form-control" id="maintext" name="maintext"
-                                placeholder="Main front text">
-                        </div>
-                        <div class="mb-3">
-                            <label for="leftimg" class="form-label">Left Image</label>
-                            <input type="file" class="form-control" id="leftimg" name="leftimg">
-                        </div>
-                        <div class="mb-3">
-                            <label for="rightimg" class="form-label">Right Image</label>
-                            <input type="file" class="form-control" id="rightimg" name="rightimg">
-                        </div>
-                        <div class="mb-3">
-                            <label for="bgtext" class="form-label">Background Text</label>
-                            <input type="text" class="form-control" id="bgtext" name="bgtext"
-                                placeholder="Background Text">
-                        </div>
-                        <div class="mb-3">
-                            <label for="decollection" class="form-label">Collection</label>
-                            <input type="text" class="form-control" id="decollection" name="decollection"
-                                placeholder="Collection">
-                        </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="bgimage" class="form-label">Background Image</label>
+                        <input type="file" class="form-control" id="bgimage" name="bgimage" required>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Banner</button>
+                    <div class="mb-3">
+                        <label for="maintext" class="form-label">Main Text</label>
+                        <input type="text" class="form-control" id="maintext" name="maintext" required>
                     </div>
-                </form>
+                    <div class="mb-3">
+                        <label for="bgtext" class="form-label">Background Text</label>
+                        <input type="text" class="form-control" id="bgtext" name="bgtext" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Banner</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
 
-    <!-- Add 2nd Banner Modal -->
-    <div class="modal fade" id="add2ndBannerModal" tabindex="-1" aria-labelledby="add2ndBannerModalLabel"
-        aria-hidden="true">
+    <!-- Add Middle Banner Modal -->
+    <div class="modal fade" id="addMiddleBannerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="add2ndBannerModalLabel">Add Mid Banner</h5>
+                    <h5 class="modal-title">Add Middle Banner</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/admin/midbanners" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="image1" class="form-label">Image 1</label>
-                            <input type="file" class="form-control" id="image1" name="image1">
-                        </div>
-                        <div class="mb-3">
-                            <label for="image2" class="form-label">Image 2</label>
-                            <input type="file" class="form-control" id="image2" name="image2">
-                        </div>
-                        <div class="mb-3">
-                            <label for="image3" class="form-label">Image 3</label>
-                            <input type="file" class="form-control" id="image3" name="image3">
+                            <label for="image1" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image1" name="image1" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Mid Banner</button>
+                        <button type="submit" class="btn btn-primary">Add Middle Banner</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Add 3rd Banner Modal -->
-    <div class="modal fade" id="add3rdBannerModal" tabindex="-1" aria-labelledby="add3rdBannerModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="add3rdBannerModalLabel">Add Bottom Banner</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="/admin/botbanners" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="bkimage" class="form-label">Background Image</label>
-                            <input type="file" class="form-control" id="bkimage" name="bkimage">
-                        </div>
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Price">
-                        </div>
-                        <div class="mb-3">
-                            <label for="dscrptext" class="form-label">Description</label>
-                            <textarea class="form-control" id="dscrptext" name="dscrptext"
-                                placeholder="Description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="imglink1" class="form-label">Image Link 1</label>
-                            <input type="file" class="form-control" id="imglink1" name="imglink1">
-                        </div>
-                        <div class="mb-3">
-                            <label for="imglink2" class="form-label">Image Link 2</label>
-                            <input type="file" class="form-control" id="imglink2" name="imglink2">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Bottom Banner</button>
-                    </div>
-                </form>
+   <!-- Add Bottom Banner Modal -->
+<div class="modal fade" id="addBottomBannerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Bottom Banner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="/admin/botbanners" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="bkimage" class="form-label">Background Image</label>
+                        <input type="file" class="form-control" id="bkimage" name="bkimage" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dscrptext" class="form-label">Description</label>
+                        <textarea class="form-control" id="dscrptext" name="dscrptext" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Bottom Banner</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 
     <!-- Add Sale Banner Modal -->
-    <div class="modal fade" id="addsaleBannerModal" tabindex="-1" aria-labelledby="addsaleBannerModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="addSaleBannerModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addsaleBannerModalLabel">Add Sale Banner</h5>
+                    <h5 class="modal-title">Add Sale Banner</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/admin/salebanners" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="saleimage" class="form-label">Sale Image</label>
-                            <input type="file" class="form-control" id="saleimage" name="saleimage">
+                            <input type="file" class="form-control" id="saleimage" name="saleimage" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -696,38 +799,52 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Bundle with Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-       document.getElementById('showTopBanner').addEventListener('click', function() {
-    showTable('topBannerTable');
-});
+        // Function to set the active link based on the current URL
+        function setActiveLink() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
 
-document.getElementById('showMidBanner').addEventListener('click', function() {
-    showTable('midBannerTable');
-});
-
-document.getElementById('showBotBanner').addEventListener('click', function() {
-    showTable('botBannerTable');
-});
-
-document.getElementById('showSaleBanner').addEventListener('click', function() {
-    showTable('saleBannerTable');
-});
-
-function showTable(tableId) {
-    const tables = document.querySelectorAll('.table-responsive table');
-    tables.forEach(table => {
-        if (table.id === tableId) {
-            table.style.display = 'table';
-        } else {
-            table.style.display = 'none';
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
         }
-    });
-}
 
+        // Function to confirm deletion
+        function confirmDelete(event) {
+            if (!confirm('Are you sure you want to delete this banner?')) {
+                event.preventDefault();
+            }
+        }
+
+        // Function to initialize the page
+        function initPage() {
+            setActiveLink();
+
+            // Add event listeners for delete buttons
+            const deleteButtons = document.querySelectorAll('.btn-outline-danger');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', confirmDelete);
+            });
+
+            // Add event listeners for edit buttons (you can implement edit functionality here)
+            const editButtons = document.querySelectorAll('.btn-outline-primary');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    // Implement edit functionality
+                    console.log('Edit button clicked');
+                });
+            });
+        }
+
+        // Call initPage when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initPage);
     </script>
-    
 </body>
 
 </html>

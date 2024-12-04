@@ -9,11 +9,9 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS
     }
 });
-
 const generateOTP = () => {
     return otpGenerator.generate(6, { upperCase: false, specialChars: false });
 };
-
 const sendOTP = async (email, otp) => {
     const mailOptions = {
         from: process.env.EMAIL_USER,

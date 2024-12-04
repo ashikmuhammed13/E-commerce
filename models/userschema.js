@@ -43,7 +43,7 @@ const addressSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-    }
+    },
 });
 
 
@@ -68,7 +68,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
     },
     phone: {
-        type: Number,
+        type: String, 
         minlength: [8, "Minimum 8 characters"],
         maxlength: [11, "Maximum 11 characters"],
         required: [true, "Number is required"],
@@ -100,6 +100,7 @@ const userSchema = new mongoose.Schema({
     otpExpires: {
         type: Date,
     },
+    wallet: {    type: Number,    default: 0},
 }, { timestamps: true });
 
 // Save password 
